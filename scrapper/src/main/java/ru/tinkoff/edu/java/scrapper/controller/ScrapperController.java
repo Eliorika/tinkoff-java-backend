@@ -18,7 +18,6 @@ import java.util.List;
 
 @RestControllerAdvice
 @RestController
-@RequestMapping("/tg-scrapper")
 public class ScrapperController {
 
     @PostMapping("/tg-chat/{id}")
@@ -32,19 +31,19 @@ public class ScrapperController {
     }
 
     @GetMapping("/links")
-    public ResponseEntity<ListLinksResponse> getLinks(Long id) {
+    public ResponseEntity<ListLinksResponse> getLinks(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id) {
 
         ListLinksResponse links = new ListLinksResponse(null ,0);
         return ResponseEntity.ok(links);
     }
 
     @PostMapping("/links")
-    public ResponseEntity<LinkResponse> addLink(Long id, @RequestBody AddLinkRequest request) {
+    public ResponseEntity<LinkResponse> addLink( @RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody AddLinkRequest request) {
         LinkResponse link = new LinkResponse(id, "Link added successfully");
         return ResponseEntity.ok(link);
     }
 
-    public ResponseEntity<Void> removeLink(Long id, @RequestBody RemoveLinkRequest request) {
+    public ResponseEntity<Void> removeLink(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody RemoveLinkRequest request) {
         return ResponseEntity.ok().build();
     }
 
