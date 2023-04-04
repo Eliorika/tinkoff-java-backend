@@ -13,6 +13,7 @@ import ru.tinkoff.edu.java.scrapper.dto.response.ListLinksResponse;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,16 +34,17 @@ public class ScrapperController {
     @GetMapping("/links")
     public ResponseEntity<ListLinksResponse> getLinks(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id) {
 
-        ListLinksResponse links = new ListLinksResponse(null ,0);
+        ListLinksResponse links = new ListLinksResponse(new ArrayList<>(),0);
         return ResponseEntity.ok(links);
     }
 
     @PostMapping("/links")
     public ResponseEntity<LinkResponse> addLink( @RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody AddLinkRequest request) {
-        LinkResponse link = new LinkResponse(id, "Link added successfully");
+        LinkResponse link = new LinkResponse(id, "http://localhost");
         return ResponseEntity.ok(link);
     }
 
+    @DeleteMapping("/links")
     public ResponseEntity<Void> removeLink(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody RemoveLinkRequest request) {
         return ResponseEntity.ok().build();
     }

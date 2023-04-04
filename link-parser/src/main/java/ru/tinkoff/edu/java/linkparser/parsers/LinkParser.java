@@ -9,7 +9,7 @@ public sealed interface LinkParser permits GitHubParser, StackOverflowParser, Wr
         return null;
     }
 
-    static LinkParser defineHost(URL url){
+    private static LinkParser defineHost(URL url){
         String sHost = url.getHost();
         LinkParser parser = new WrongHostParser();
         if(sHost.contains("github"))
@@ -17,5 +17,10 @@ public sealed interface LinkParser permits GitHubParser, StackOverflowParser, Wr
         else if (sHost.contains("stackoverflow"))
             parser = new StackOverflowParser();
         return parser;
+    }
+
+    static Result getLinkInfo(URL url){
+        LinkParser lp = defineHost(url);
+        return lp.parseLink(url);
     }
 }
