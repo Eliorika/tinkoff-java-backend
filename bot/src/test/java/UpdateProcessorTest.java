@@ -13,8 +13,8 @@ public class UpdateProcessorTest {
     @Test
     public void testProcessUnknownCommand() {
         ClientConfiguration cl = new ClientConfiguration();
-        ScrapperClient.setScrapperClient(new ScrapperClient(cl.scrapperWebClient()));
         ScrapperClient scrapperClient = Mockito.mock(ScrapperClient.class);
+        UpdateProcessor updateProcessor = Mockito.mock(UpdateProcessor.class);
 
         long chatId = 123L;
         Message message = Mockito.mock(Message.class);
@@ -25,7 +25,7 @@ public class UpdateProcessorTest {
         String command = "/something_just_went_wrong";
         Mockito.when(message.getText()).thenReturn(command);
 
-        SendMessage result = UpdateProcessor.process(update);
+        SendMessage result = updateProcessor.process(update);
         SendMessage expected = new SendMessage(Long.toString(chatId), "Sorry, I have no idea what are you talking about. Use /help to see list of commands I know");
 
         assertEquals(result.getChatId(), expected.getChatId());

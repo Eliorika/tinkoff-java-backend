@@ -1,34 +1,33 @@
 package ru.tinkoff.edu.java.bot;
 
+import lombok.Getter;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.tinkoff.edu.java.bot.commands.*;
 
-import java.util.Arrays;
 import java.util.List;
 
+
+@Component
 public class UpdateProcessor {
 
-    private UpdateProcessor(){}
+    @Getter
+    private static List<Command> commands;
 
-    public static List<Command> commands() {
-        return Arrays.asList(
-                new StartCommand(),
-                new HelpCommand(),
-                new TrackCommand(),
-                new UntrackCommand(),
-                new ListCommand()
-        );
+    public UpdateProcessor(CommandFactory factory) {
+        commands = factory.commands();
     }
 
-    public static SendMessage process(Update update){
+
+    public SendMessage process(Update update){
         if (update.getMessage() == null) {
             return null;
         }
         String command = update.getMessage().getText().split(" ")[0];
 
         if (command.startsWith("/")) {
-            for (Command c : commands()) {
+            for (Command c : commands) {
                 if (c.supports(update)) {
                     return c.handleCommand(update);
                 }

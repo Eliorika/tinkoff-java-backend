@@ -1,9 +1,13 @@
 package ru.tinkoff.edu.java.bot.commands;
 
+import lombok.RequiredArgsConstructor;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import ru.tinkoff.edu.java.bot.client.ScrapperClient;
 
+@RequiredArgsConstructor
 public class StartCommand implements Command{
+    private final ScrapperClient scrapperClient;
     @Override
     public String command() {
         return "/start";

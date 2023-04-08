@@ -24,8 +24,7 @@ public class CommandListTest {
     @Test
     public void testListHandleWithEmptyLinks() {
         ScrapperClient scrapperClient = Mockito.mock(ScrapperClient.class);
-        ScrapperClient.setScrapperClient(scrapperClient);
-        ListCommand listCommand = new ListCommand();
+        ListCommand listCommand = new ListCommand(scrapperClient);
         long chatId = 123L;
         Message message = Mockito.mock(Message.class);
         Mockito.when(message.getChatId()).thenReturn(chatId);
@@ -43,8 +42,7 @@ public class CommandListTest {
     @Test
     public void testListHandleWithLinks() throws URISyntaxException {
         ScrapperClient scrapperClient = Mockito.mock(ScrapperClient.class);
-        ScrapperClient.setScrapperClient(scrapperClient);
-        ListCommand listCommand = new ListCommand();
+        ListCommand listCommand = new ListCommand(scrapperClient);
         long chatId = 123L;
         Message message = Mockito.mock(Message.class);
         Mockito.when(message.getChatId()).thenReturn(chatId);

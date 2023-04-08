@@ -1,5 +1,6 @@
 package ru.tinkoff.edu.java.bot.commands;
 
+import lombok.RequiredArgsConstructor;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
@@ -9,8 +10,9 @@ import ru.tinkoff.edu.java.bot.client.dto.response.ListLinksResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 public class ListCommand implements Command{
-    private ScrapperClient scrapperClient = ScrapperClient.getScrapperClient();
+    private final ScrapperClient scrapperClient;
     @Override
     public String command() {
         return "/list";

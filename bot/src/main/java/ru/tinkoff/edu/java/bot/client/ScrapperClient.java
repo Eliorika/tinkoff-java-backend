@@ -1,6 +1,7 @@
 package ru.tinkoff.edu.java.bot.client;
 
 
+import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,13 @@ import ru.tinkoff.edu.java.bot.client.dto.response.LinkResponse;
 public class ScrapperClient {
     private final WebClient scrapperWebClient;
 
-    @Getter
-    @Setter
-    private static ScrapperClient scrapperClient;
 
     @Autowired
     public ScrapperClient(WebClient scrapperWebClient) {
         this.scrapperWebClient = scrapperWebClient;
     }
+
+
 
     public ScrapperClient(String baseUrl) {
         scrapperWebClient = WebClient.builder()

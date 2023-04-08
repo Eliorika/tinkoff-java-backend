@@ -1,5 +1,6 @@
 package ru.tinkoff.edu.java.bot.commands;
 
+import lombok.RequiredArgsConstructor;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
@@ -8,9 +9,10 @@ import ru.tinkoff.edu.java.bot.client.dto.request.AddLinkRequest;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@RequiredArgsConstructor
 public class TrackCommand implements Command{
 
-    private ScrapperClient scrapperClient = ScrapperClient.getScrapperClient();
+    private final ScrapperClient scrapperClient;
     @Override
     public String command() {
         return "/track";
