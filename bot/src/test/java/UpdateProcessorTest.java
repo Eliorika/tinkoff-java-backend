@@ -6,6 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.tinkoff.edu.java.bot.UpdateProcessor;
 import ru.tinkoff.edu.java.bot.client.ClientConfiguration;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
+import ru.tinkoff.edu.java.bot.commands.CommandFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,7 +15,9 @@ public class UpdateProcessorTest {
     public void testProcessUnknownCommand() {
         ClientConfiguration cl = new ClientConfiguration();
         ScrapperClient scrapperClient = Mockito.mock(ScrapperClient.class);
-        UpdateProcessor updateProcessor = Mockito.mock(UpdateProcessor.class);
+        CommandFactory commandFactory = new CommandFactory(scrapperClient);
+        UpdateProcessor updateProcessor = new UpdateProcessor(commandFactory);
+
 
         long chatId = 123L;
         Message message = Mockito.mock(Message.class);
