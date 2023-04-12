@@ -1,2 +1,21 @@
 app:
   test: hi
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+  api-docs:
+    path: /api-docs
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: test
+
+telegram:
+  bot-name: ${BOT_NAME}
+  bot-token: ${BOT_TOKEN}
+  api-url: "https://api.telegram.org/"
