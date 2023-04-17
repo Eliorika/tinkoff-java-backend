@@ -18,12 +18,10 @@ spring:
     name: test
 
   datasource:
-    url: jdbc:postgresql://postgres:5432/scrapper
+    url: jdbc:postgresql://localhost:5432/scrapper
     username: arina
-    password: 0000
     driver-class-name: org.postgresql.Driver
+    password: "0000"
 
-
-
-
-
+github:
+  token: ${GITHUB_TOKEN}

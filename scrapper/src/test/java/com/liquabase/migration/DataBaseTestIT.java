@@ -18,7 +18,7 @@ public class DataBaseTestIT extends  IntegrationEnvironment{
         IntegrationEnvironment.runMigrations(c);
         try {
             Statement st = DriverManager.getConnection(c.getJdbcUrl(), c.getUsername(), c.getPassword()).createStatement();
-            int res = st.executeUpdate("INSERT INTO links(link, last_checked) VALUES (\'github\', now())");
+            int res = st.executeUpdate("INSERT INTO links(link, last_checked) VALUES ('github', now())");
             assertEquals(res, 1);
         } catch (SQLException e) {
             throw new RuntimeException(e);
