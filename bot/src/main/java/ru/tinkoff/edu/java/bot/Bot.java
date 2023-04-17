@@ -24,8 +24,6 @@ public class Bot extends TelegramLongPollingBot {
     private String token;
     private final UpdateProcessor updateProcessor;
 
-
-
     private static final Logger log = Logger.getLogger(Bot.class);
 
     public Bot(UpdateProcessor updateProcessor) {
@@ -60,6 +58,14 @@ public class Bot extends TelegramLongPollingBot {
     public void init() throws TelegramApiException {
         TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
         telegramBotsApi.registerBot(this);
+    }
+
+    public void sendUpdateMessage(SendMessage sm){
+        try {
+            execute(sm);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

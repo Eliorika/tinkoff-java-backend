@@ -38,4 +38,5 @@ public class UpdateProcessor {
         sm.setText("Sorry, I have no idea what are you talking about. Use /help to see list of commands I know");
         return sm;
     }
+
 }

@@ -17,8 +17,8 @@ public class ClientConfiguration {
     }
 
     @Bean
-    public GithubClient githubClient(WebClient githubWebClient) {
-        return new GithubClient(githubWebClient);
+    public GitHubClient githubClient(WebClient githubWebClient) {
+        return new GitHubClient(githubWebClient);
     }
 
     @Bean
@@ -32,5 +32,18 @@ public class ClientConfiguration {
     @Bean
     public StackOverflowClient stackOverflowClient(WebClient stackOverflowWebClient) {
         return new StackOverflowClient(stackOverflowWebClient);
+    }
+
+    @Bean
+    public BotClient botClient(){
+        return new BotClient(botWebClient());
+    }
+
+    @Bean
+    public WebClient botWebClient(){
+        return WebClient.builder()
+                .baseUrl("http://localhost:8081")
+                .defaultHeader("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+                .build();
     }
 }

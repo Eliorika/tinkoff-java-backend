@@ -10,7 +10,7 @@ import java.sql.Statement;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class LinkInsertTest extends  IntegrationEnvironment{
+public class DataBaseTestIT extends  IntegrationEnvironment{
 
     @Test
     public void insertTest(){

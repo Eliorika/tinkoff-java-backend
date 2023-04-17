@@ -5,9 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+import java.net.URI;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class RemoveLinkRequest{
-    private @NonNull String url;
+    private @NonNull URI url;
 }

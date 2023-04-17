@@ -25,6 +25,7 @@ public class StartCommand implements Command{
         sm.setChatId(update.getMessage().getChatId());
         String answer = "Hi, " + update.getMessage().getChat().getFirstName() + "! What's up! \nEnter /help to find out what I can!";
         sm.setText(answer);
+        scrapperClient.registerChat(update.getMessage().getChat().getId());
         return sm;
     }
 

@@ -4,12 +4,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import java.time.OffsetDateTime;
 @Data
+@RequiredArgsConstructor
 @AllArgsConstructor
-public class GithubResponse{
+public class GitHubResponse {
+
+    @JsonProperty("full_name")
     private String sUser;
-    @JsonProperty("updated_at")
+    @JsonProperty("pushed_at")
     private @NonNull OffsetDateTime updatedAt;
 }

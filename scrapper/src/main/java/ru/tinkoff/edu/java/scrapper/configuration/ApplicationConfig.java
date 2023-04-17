@@ -7,6 +7,7 @@ import org.springframework.validation.annotation.Validated;
 import ru.tinkoff.edu.java.scrapper.scheduler.Scheduler;
 
 
+import javax.sql.DataSource;
 import java.time.Duration;
 
 @Validated
@@ -14,6 +15,7 @@ import java.time.Duration;
 public record ApplicationConfig(@NotNull String test, Scheduler scheduler) {
     @Value("${app.scheduler.interval}")
     private static Duration schedulerTime;
+
 }
 
 
