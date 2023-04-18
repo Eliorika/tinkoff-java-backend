@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset create_database:1
-create table if not exists chats
+create table if not exists CHATS
 (
-    tg_chat bigint primary key
+    TG_CHAT bigint primary key
 );

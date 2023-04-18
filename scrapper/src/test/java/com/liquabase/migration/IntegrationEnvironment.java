@@ -8,13 +8,23 @@ import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import liquibase.resource.DirectoryResourceAccessor;
 import org.checkerframework.checker.units.qual.C;
+import org.jooq.DSLContext;
+import org.jooq.SQLDialect;
+import org.jooq.conf.RenderNameStyle;
+import org.jooq.conf.RenderQuotedNames;
+import org.jooq.conf.Settings;
+import org.jooq.impl.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.jooq.DefaultConfigurationCustomizer;
+import org.springframework.boot.autoconfigure.jooq.JooqExceptionTranslator;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.jdbc.support.JdbcTransactionManager;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
@@ -66,6 +76,30 @@ public abstract class IntegrationEnvironment {
         public PlatformTransactionManager transactionManager(DataSource dataSource) {
             return new JdbcTransactionManager(dataSource);
         }
+
+
+        @Bean
+        public DataSourceConnectionProvider connectionProvider() {
+            return new DataSourceConnectionProvider(
+                    new TransactionAwareDataSourceProxy(testDataSource()));
+        }
+
+        @Bean
+        public DSLContext dsl() {
+            return new DefaultDSLContext(configuration());
+        }
+
+        public DefaultConfiguration configuration() {
+            DefaultConfiguration config = new DefaultConfiguration();
+            config.set(connectionProvider());
+            config.set(SQLDialect.POSTGRES);
+            config.set(new Settings().
+                    withRenderNameStyle(RenderNameStyle.AS_IS ));
+            config.set(new DefaultExecuteListenerProvider(
+                    new JooqExceptionTranslator() ));
+            return config;
+        }
+
     }
 
     @DynamicPropertySource

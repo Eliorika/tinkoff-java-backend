@@ -4,9 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.dto.TrackLink;
-import ru.tinkoff.edu.java.scrapper.domain.repository.ChatRepository;
-import ru.tinkoff.edu.java.scrapper.domain.repository.LinkRepository;
-import ru.tinkoff.edu.java.scrapper.domain.repository.ListLinksRepository;
+import ru.tinkoff.edu.java.scrapper.domain.repository.jdbc.JdbcTemplateLinkRepository;
+import ru.tinkoff.edu.java.scrapper.domain.repository.jdbc.JdbcTemplateListLinksRepository;
 import ru.tinkoff.edu.java.scrapper.service.LinkUpdater;
 
 import java.util.ArrayList;
@@ -18,15 +17,15 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JdbcLinkUpdater implements LinkUpdater {
 
-    private final LinkRepository linkRepository;
-    private final ListLinksRepository listLinksRepository;
+    private final JdbcTemplateLinkRepository linkRepository;
+    private final JdbcTemplateListLinksRepository listLinksRepository;
 
 
 
     @Override
     public int update(List<Link> links) {
         for (Link link: links) {
-            linkRepository.update(link.getId());
+            linkRepository.update(link.getLink_id());
         }
         return links.size();
     }
@@ -41,7 +40,7 @@ public class JdbcLinkUpdater implements LinkUpdater {
         Map<Link, List<Long>> map = new HashMap<>();
         for(Link link: links){
             map.put(link, new ArrayList<>());
-            var tracks = listLinksRepository.findAllByLinkId(link.getId());
+            var tracks = listLinksRepository.findAllByLinkId(link.getLink_id());
             for(TrackLink ln: tracks){
                 map.get(link).add(ln.getTg_chat().getTg_chat());
             }

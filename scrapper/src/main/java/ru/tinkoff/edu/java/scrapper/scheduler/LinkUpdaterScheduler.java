@@ -1,7 +1,6 @@
 package ru.tinkoff.edu.java.scrapper.scheduler;
 
 import lombok.RequiredArgsConstructor;
-import org.openapitools.model.LinkUpdate;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,8 +17,6 @@ import ru.tinkoff.edu.java.scrapper.dto.response.StackOverflowResponse;
 import ru.tinkoff.edu.java.scrapper.service.LinkUpdater;
 import ru.tinkoff.edu.java.linkparser.linkStructures.Result;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.stream.Collectors;
 
 @Component
@@ -40,14 +37,14 @@ public class LinkUpdaterScheduler {
             if (parseResult instanceof GitHubResult ghResult){
                 GitHubResponse response = gitHubClient.fetchRepository(ghResult.sUser(), ghResult.sRepository());
                 if (response.getUpdatedAt().compareTo(link.getLastUpdated()) > -1) {
-                    botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
+                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New pushes in repo!", updates.get(link)));
                 }
             } else if (parseResult instanceof StackOverflowResult soResult) {
                 StackOverflowResponse response = stackOverflowClient.fetchQuestion(soResult.id());
 
                 if (response.getUpdatedAt().compareTo(link.getLastUpdated()) > -1) {
-                    botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
+                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New updates in question!", updates.get(link)));
                 }
 
@@ -58,12 +55,12 @@ public class LinkUpdaterScheduler {
                 int cAfterUpdate = comment.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1).collect(Collectors.toList()).size();
 
                 if(qAfterUpdate > 0){
-                    botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
+                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New answer(s)!", updates.get(link)));
                 }
 
                 if(cAfterUpdate > 0){
-                    botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
+                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New comment(s)!", updates.get(link)));
                 }
             }

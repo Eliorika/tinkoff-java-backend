@@ -14,6 +14,6 @@ public class LinkResponse{
     private @NonNull URI url;
 
     public static LinkResponse fromLinkToLinkResponse(Link link) {
-        return new LinkResponse(link.getId(), link.getLink());
+        return new LinkResponse(link.getLink_id(), link.getLink());
     }
 }

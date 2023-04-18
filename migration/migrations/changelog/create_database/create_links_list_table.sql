@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset create_database:1
-create sequence if not exists track_link_sequence start with 1;
+create sequence if not exists TRACK_LINK_SEQUENCE start with 1;
 create table if not exists links_list
 (
     track_id          bigint default nextval('track_link_sequence') primary key,
