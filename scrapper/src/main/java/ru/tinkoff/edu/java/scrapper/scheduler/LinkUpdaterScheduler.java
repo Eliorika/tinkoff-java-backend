@@ -20,6 +20,7 @@ import ru.tinkoff.edu.java.linkparser.linkStructures.Result;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.stream.Collectors;
 
 @Component
 @EnableScheduling
@@ -40,13 +41,30 @@ public class LinkUpdaterScheduler {
                 GitHubResponse response = gitHubClient.fetchRepository(ghResult.sUser(), ghResult.sRepository());
                 if (response.getUpdatedAt().compareTo(link.getLastUpdated()) > -1) {
                     botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
-                            "New updates in repo", updates.get(link)));
+                            "New pushes in repo!", updates.get(link)));
                 }
             } else if (parseResult instanceof StackOverflowResult soResult) {
                 StackOverflowResponse response = stackOverflowClient.fetchQuestion(soResult.id());
+
                 if (response.getUpdatedAt().compareTo(link.getLastUpdated()) > -1) {
                     botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
-                            "New updates in question", updates.get(link)));
+                            "New updates in question!", updates.get(link)));
+                }
+
+                var question = response.getAnswersTime();
+                int qAfterUpdate = question.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1).collect(Collectors.toList()).size();
+
+                var comment = response.getCommentsTime();
+                int cAfterUpdate = comment.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1).collect(Collectors.toList()).size();
+
+                if(qAfterUpdate > 0){
+                    botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
+                            "New answer(s)!", updates.get(link)));
+                }
+
+                if(cAfterUpdate > 0){
+                    botClient.update(new LinkUpdateRequest(link.getId(), link.getLink().toString(),
+                            "New comment(s)!", updates.get(link)));
                 }
             }
         }

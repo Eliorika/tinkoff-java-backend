@@ -7,6 +7,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -16,4 +17,9 @@ public class StackOverflowResponse {
     private String title;
     @JsonProperty("last_activity_date")
     private @NonNull OffsetDateTime updatedAt;
+
+    private List<OffsetDateTime> answersTime;
+
+    private List<OffsetDateTime> commentsTime;
+
 }
