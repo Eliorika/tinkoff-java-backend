@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset create_database:1
-create sequence if not exists LINKS_SEQUENCE start with 1;
+create sequence if not exists LINKS_SEQUENCE start with 0;
 
 create table if not exists LINKS
 (

@@ -12,3 +12,5 @@ buildNumber.properties
 
 .idea
 *.iml
+
+migration/migrations/postgress_data

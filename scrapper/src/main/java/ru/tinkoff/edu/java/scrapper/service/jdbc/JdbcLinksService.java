@@ -11,7 +11,7 @@ import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 
-@Service
+
 @RequiredArgsConstructor
 public class JdbcLinksService implements LinksService {
 

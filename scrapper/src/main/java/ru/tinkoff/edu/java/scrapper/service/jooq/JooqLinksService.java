@@ -12,8 +12,7 @@ import java.net.URI;
 import java.time.OffsetDateTime;
 import java.util.Collection;
 
-@Service
-@Primary
+
 @RequiredArgsConstructor
 public class JooqLinksService implements LinksService {
 

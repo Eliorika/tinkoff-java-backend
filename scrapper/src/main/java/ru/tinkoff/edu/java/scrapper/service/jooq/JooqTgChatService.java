@@ -11,8 +11,7 @@ import ru.tinkoff.edu.java.scrapper.service.TgChatService;
 
 import java.util.List;
 
-@Service
-@Primary
+
 @AllArgsConstructor
 public class JooqTgChatService implements TgChatService {
 
