@@ -1,15 +1,15 @@
-package com.liquabase.migration.repository.jooq;
+package ru.tinkoff.edu.java.scrapper.repository.jdbc;
 
-import com.liquabase.migration.IntegrationEnvironment;
+import ru.tinkoff.edu.java.scrapper.repository.IntegrationEnvironment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
-import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqChatRepository;
-import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqLinkRepository;
-import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqListLinksRepository;
+import ru.tinkoff.edu.java.scrapper.domain.repository.jdbc.JdbcTemplateChatRepository;
+import ru.tinkoff.edu.java.scrapper.domain.repository.jdbc.JdbcTemplateLinkRepository;
+import ru.tinkoff.edu.java.scrapper.domain.repository.jdbc.JdbcTemplateListLinksRepository;
 
 import java.time.OffsetDateTime;
 
@@ -18,17 +18,17 @@ import static org.hamcrest.Matchers.*;
 
 
 @SpringBootTest(classes = {IntegrationEnvironment.EnvironmentConfig.class,
-        JooqChatRepository.class, JooqListLinksRepository.class, JooqLinkRepository.class})
-public class JooqListLinkTestIT extends IntegrationEnvironment {
+        JdbcTemplateChatRepository.class, JdbcTemplateListLinksRepository.class, JdbcTemplateLinkRepository.class})
+public class JdbcListLinkTestIT extends IntegrationEnvironment {
 
     @Autowired
-    private JooqChatRepository chatRepository;
+    private JdbcTemplateChatRepository chatRepository;
 
     @Autowired
-    private JooqLinkRepository linkRepository;
+    private JdbcTemplateLinkRepository linkRepository;
 
     @Autowired
-    private JooqListLinksRepository listLinksRepository;
+    private JdbcTemplateListLinksRepository listLinksRepository;
 
     @Test
     @Transactional

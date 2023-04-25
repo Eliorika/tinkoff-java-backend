@@ -1,5 +1,6 @@
-package com.liquabase.migration;
+package ru.tinkoff.edu.java.scrapper;
 
+import ru.tinkoff.edu.java.scrapper.repository.IntegrationEnvironment;
 import org.junit.Test;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 
@@ -10,7 +11,7 @@ import java.sql.Statement;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class DataBaseTestIT extends  IntegrationEnvironment{
+public class DataBaseTestIT extends IntegrationEnvironment {
 
     @Test
     public void insertTest(){

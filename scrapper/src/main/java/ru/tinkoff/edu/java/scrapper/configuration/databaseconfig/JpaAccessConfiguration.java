@@ -3,6 +3,7 @@ package ru.tinkoff.edu.java.scrapper.configuration.databaseconfig;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaChatRepository;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaLinkRepository;
 import ru.tinkoff.edu.java.scrapper.service.LinkUpdater;
@@ -14,6 +15,7 @@ import ru.tinkoff.edu.java.scrapper.service.jpa.JpaLinksUpdater;
 
 @Configuration
 @ConditionalOnProperty(prefix = "app", name = "database-access-type", havingValue = "jpa")
+
 public class JpaAccessConfiguration {
     @Bean
     public LinksService linkService(JpaChatRepository chatRepository,

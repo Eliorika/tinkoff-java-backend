@@ -34,6 +34,7 @@ services:
         - ./migrations:/liquibase/changelog
     networks:
       - backend
+    restart: on-failure
 
 networks:
   backend: {}

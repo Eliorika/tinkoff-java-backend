@@ -1,7 +1,8 @@
 package ru.tinkoff.edu.java.scrapper.service.jpa;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.etities.ChatEntity;
@@ -15,12 +16,12 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 public class JpaLinkService implements LinksService {
     private final JpaChatRepository chatRepository;
     private final JpaLinkRepository linkRepository;
+
 
     @Override
     @Transactional
@@ -58,11 +59,11 @@ public class JpaLinkService implements LinksService {
         chat.getLinks().remove(link);
         link.getChats().remove(chat);
         chatRepository.save(chat);
-
+        linkRepository.save(link);
         if(!chat.getLinks().contains(link)){
             linkRepository.delete(link);
         }
-        linkRepository.save(link);
+
         return new Link(link.getLink_id(), link.getLink(), link.getLastUpdated());
     }
 

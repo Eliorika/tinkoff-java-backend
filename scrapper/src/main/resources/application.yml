@@ -18,6 +18,12 @@ server:
 spring:
   application:
     name: test
+  jpa:
+    hibernate:
+      ddl-auto: create
+      format-sql: true
+    show-sql: true
+
 
   datasource:
     url: jdbc:postgresql://localhost:5432/scrapper

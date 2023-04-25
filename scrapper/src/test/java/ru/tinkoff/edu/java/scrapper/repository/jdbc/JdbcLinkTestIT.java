@@ -1,6 +1,6 @@
-package com.liquabase.migration.repository.jdbc;
+package ru.tinkoff.edu.java.scrapper.repository.jdbc;
 
-import com.liquabase.migration.IntegrationEnvironment;
+import ru.tinkoff.edu.java.scrapper.repository.IntegrationEnvironment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

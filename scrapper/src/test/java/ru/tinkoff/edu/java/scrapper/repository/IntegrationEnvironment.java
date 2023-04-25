@@ -1,4 +1,4 @@
-package com.liquabase.migration;
+package ru.tinkoff.edu.java.scrapper.repository;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;
@@ -7,53 +7,96 @@ import liquibase.database.core.PostgresDatabase;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.LiquibaseException;
 import liquibase.resource.DirectoryResourceAccessor;
-import org.checkerframework.checker.units.qual.C;
 import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.conf.RenderNameStyle;
-import org.jooq.conf.RenderQuotedNames;
 import org.jooq.conf.Settings;
 import org.jooq.impl.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jooq.DefaultConfigurationCustomizer;
 import org.springframework.boot.autoconfigure.jooq.JooqExceptionTranslator;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.jdbc.support.JdbcTransactionManager;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 import javax.sql.DataSource;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 
 @Testcontainers
 public abstract class IntegrationEnvironment {
     protected static final JdbcDatabaseContainer<?> CONTAINER;
+    private static String DB_NAME = "scrapper";
+    private static String USER_NAME = "admin";
+    private static String PASSWORD = "0000";
 
     static {
-        CONTAINER = new PostgreSQLContainer<>("postgres:15.2-alpine")
-                .withDatabaseName("scrapper")
-                .withUsername("admin")
-                .withPassword("0000");
+        DockerImageName imgName = DockerImageName.parse("postgres:latest");
+        CONTAINER = new PostgreSQLContainer<>(imgName)
+                .withDatabaseName(DB_NAME)
+                .withUsername(USER_NAME)
+                .withPassword(PASSWORD)
+                .withExposedPorts(PostgreSQLContainer.POSTGRESQL_PORT);
+
+//        CONTAINER.setWaitStrategy(Wait.defaultWaitStrategy()
+//                .withStartupTimeout(Duration.of(60, SECONDS)));
         CONTAINER.start();
 
         runMigrations(CONTAINER);
 
+    }
+
+    @Configuration
+    public static class JpaConfig{
+        @Bean
+        public DataSource testDataSource() {
+            return DataSourceBuilder.create()
+                    .url(CONTAINER.getJdbcUrl())
+                    .username(CONTAINER.getUsername())
+                    .password(CONTAINER.getPassword())
+                    .build();
+        }
+
+        @Bean
+        @Primary
+        public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+            return new JdbcTemplate(dataSource);
+        }
+
+        @Bean
+        public DataSourceConnectionProvider connectionProvider() {
+            return new DataSourceConnectionProvider(
+                    new TransactionAwareDataSourceProxy(testDataSource()));
+        }
+
+        @Bean
+        public DSLContext dsl() {
+            return new DefaultDSLContext(configuration());
+        }
+
+        public DefaultConfiguration configuration() {
+            DefaultConfiguration config = new DefaultConfiguration();
+            config.set(connectionProvider());
+            config.set(SQLDialect.POSTGRES);
+            config.set(new Settings().
+                    withRenderNameStyle(RenderNameStyle.AS_IS ));
+            config.set(new DefaultExecuteListenerProvider(
+                    new JooqExceptionTranslator() ));
+            return config;
+        }
     }
 
     @Configuration
@@ -68,6 +111,7 @@ public abstract class IntegrationEnvironment {
                     .build();
         }
         @Bean
+        @Primary
         public JdbcTemplate jdbcTemplate(DataSource dataSource) {
             return new JdbcTemplate(dataSource);
         }
@@ -99,6 +143,7 @@ public abstract class IntegrationEnvironment {
                     new JooqExceptionTranslator() ));
             return config;
         }
+
 
     }
 
