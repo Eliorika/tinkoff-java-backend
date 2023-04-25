@@ -13,6 +13,8 @@ public sealed interface LinkParser permits GitHubParser, StackOverflowParser, Wr
     private static LinkParser defineHost(URI url){
         String sHost = url.getHost();
         LinkParser parser = new WrongHostParser();
+        if(sHost == null)
+            return parser;
         if(sHost.contains("github"))
             parser = new GitHubParser();
         else if (sHost.contains("stackoverflow"))

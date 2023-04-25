@@ -12,7 +12,6 @@ import ru.tinkoff.edu.java.scrapper.service.TgChatService;
 import java.util.List;
 
 @RequiredArgsConstructor
-@Service
 public class JpaChatService implements TgChatService {
     private final JpaChatRepository chatRepository;
     private final JpaLinkRepository linkRepository;

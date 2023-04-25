@@ -2,6 +2,7 @@ package ru.tinkoff.edu.java.scrapper.service.jpa;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.etities.ChatEntity;
 import ru.tinkoff.edu.java.scrapper.domain.etities.LinkEntity;
@@ -14,14 +15,15 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @RequiredArgsConstructor
-@Service
 public class JpaLinkService implements LinksService {
     private final JpaChatRepository chatRepository;
     private final JpaLinkRepository linkRepository;
 
     @Override
+    @Transactional
     public Link add(long tgChatId, URI url) {
         ChatEntity chat = chatRepository.findById(tgChatId).orElse(null);
         if(chat == null)
@@ -45,6 +47,7 @@ public class JpaLinkService implements LinksService {
     }
 
     @Override
+    @Transactional
     public Link remove(long tgChatId, URI url) {
         ChatEntity chat = chatRepository.findById(tgChatId).orElse(null);
         var link = linkRepository.findByLink(url.toString());
@@ -55,11 +58,11 @@ public class JpaLinkService implements LinksService {
         chat.getLinks().remove(link);
         link.getChats().remove(chat);
         chatRepository.save(chat);
-        linkRepository.save(link);
 
         if(!chat.getLinks().contains(link)){
             linkRepository.delete(link);
         }
+        linkRepository.save(link);
         return new Link(link.getLink_id(), link.getLink(), link.getLastUpdated());
     }
 
@@ -75,4 +78,7 @@ public class JpaLinkService implements LinksService {
         }
         return list;
     }
+
+
+
 }

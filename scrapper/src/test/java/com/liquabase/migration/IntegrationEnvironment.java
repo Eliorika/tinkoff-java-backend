@@ -100,16 +100,14 @@ public abstract class IntegrationEnvironment {
             return config;
         }
 
-
-
     }
 
-//    @DynamicPropertySource
-//    static void jdbcProperties(DynamicPropertyRegistry registry) {
-//        registry.add("spring.datasource.url", CONTAINER::getJdbcUrl);
-//        registry.add("spring.datasource.username", CONTAINER::getUsername);
-//        registry.add("spring.datasource.password", CONTAINER::getPassword);
-//    }
+    @DynamicPropertySource
+    static void jdbcProperties(DynamicPropertyRegistry registry) {
+        registry.add("spring.datasource.url", CONTAINER::getJdbcUrl);
+        registry.add("spring.datasource.username", CONTAINER::getUsername);
+        registry.add("spring.datasource.password", CONTAINER::getPassword);
+    }
 
 
     public static void runMigrations(JdbcDatabaseContainer<?> c){

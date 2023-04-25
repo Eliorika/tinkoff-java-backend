@@ -1,7 +1,6 @@
 package ru.tinkoff.edu.java.scrapper.service.jpa;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.etities.LinkEntity;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaLinkRepository;
@@ -14,8 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RequiredArgsConstructor
-@Service
-public class JpaUpdater implements LinkUpdater {
+public class JpaLinksUpdater implements LinkUpdater {
     private final JpaLinkRepository linkRepository;
 
     @Override
