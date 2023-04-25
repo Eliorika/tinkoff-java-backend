@@ -51,7 +51,7 @@ public class JPALinkUpdaterServiceTest extends IntegrationEnvironment {
 
     @Test
     @Transactional
-    public void updateLinkTestf(){
+    public void updateLinkTest(){
         long id = 222;
         jpaChatService.register(id);
         Link link1 = new Link(1, "https://github.com/Eliorika/Elective-courses", OffsetDateTime.now().minusDays(10));
