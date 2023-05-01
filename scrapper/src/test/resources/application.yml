@@ -3,9 +3,6 @@ app:
   scheduler:
     interval: 5000
   database-access-type: jpa
-  queue: qScrapper
-  exchange: exScrapper
-  useQueue: true
 
 
 springdoc:
@@ -23,21 +20,16 @@ spring:
     name: test
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
       format-sql: true
     show-sql: true
 
 
-
   datasource:
-    url: jdbc:postgresql://localhost:5433/scrapper
+    url: jdbc:postgresql://localhost:5432/scrapper
     username: arina
     driver-class-name: org.postgresql.Driver
     password: "0000"
 
-
 github:
   token: ${GITHUB_TOKEN}
-
-
-

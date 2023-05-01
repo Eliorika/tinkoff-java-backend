@@ -13,7 +13,7 @@ public interface JpaLinkRepository extends JpaRepository<LinkEntity, Long> {
     List<LinkEntity> findAllByChats(long chatId);
     LinkEntity findByLink(String link);
 
-    @Query(value = "select * from links where links.last_checked < now() - interval '5 minutes'", nativeQuery = true)
+    @Query(value = "select * from links where links.last_checked < now() - interval '1 minutes'", nativeQuery = true)
     List<LinkEntity> findOld();
 
 //    @Modifying

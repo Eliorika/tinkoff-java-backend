@@ -102,22 +102,12 @@
             <version>3.0.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.5.4</version>
-            <scope>runtime</scope>
-        </dependency>
+
         <dependency>
             <groupId>au.com.dius</groupId>
             <artifactId>pact-jvm-provider-junit5-spring</artifactId>
             <version>4.0.10</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <version>3.0.4</version>
         </dependency>
 
         <dependency>
@@ -172,11 +162,13 @@
             <version>42.5.4</version>
         </dependency>
 
+
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+            <version>3.0.6</version>
         </dependency>
+
     </dependencies>
 
     <build>

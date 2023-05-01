@@ -60,7 +60,7 @@ public class JpaLinkService implements LinksService {
         link.getChats().remove(chat);
         chatRepository.save(chat);
         linkRepository.save(link);
-        if(!chat.getLinks().contains(link)){
+        if(link.getChats().size()==0){
             linkRepository.delete(link);
         }
 
