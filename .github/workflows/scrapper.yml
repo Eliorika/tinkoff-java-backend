@@ -5,7 +5,7 @@ on:
     paths:
       - 'scrapper/**'
 
-environment:
+env:
   REGISTRY: ghcr.io
   IMAGE_NAME: scrapper
   AUTHOR: eliorika
@@ -31,5 +31,5 @@ jobs:
         run: mvn package -pl scrapper -am
 
       - name: Build Docker image
-        run: docker build -f scrapper.dockerfile -t ${{ environment.REGISTRY}}/${{ environment.AUTHOR }}/${{ environment.IMAGE_NAME }}:latest .
+        run: docker build -f scrapper.dockerfile -t ${{ env.REGISTRY}}/${{ env.AUTHOR }}/${{ env.IMAGE_NAME }}:latest .
 

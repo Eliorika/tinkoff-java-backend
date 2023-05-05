@@ -5,7 +5,7 @@ on:
     paths:
       - 'bot/**'
 
-environment:
+env:
   REGISTRY: ghcr.io
   IMAGE_NAME: bot
   AUTHOR: eliorika
@@ -31,4 +31,4 @@ jobs:
         run: mvn package -pl bot -am
 
       - name: Build Docker image
-        run: docker build -f bot.dockerfile -t ${{ environment.REGISTRY}}/${{ environment.AUTHOR }}/${{ environment.IMAGE_NAME }}:latest .
+        run: docker build -f bot.dockerfile -t ${{ env.REGISTRY}}/${{ env.AUTHOR }}/${{ env.IMAGE_NAME }}:latest .
