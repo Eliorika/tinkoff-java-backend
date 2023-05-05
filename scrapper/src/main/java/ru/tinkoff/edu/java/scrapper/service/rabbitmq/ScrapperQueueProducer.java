@@ -2,11 +2,12 @@ package ru.tinkoff.edu.java.scrapper.service.rabbitmq;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.openapitools.model.LinkUpdate;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.stereotype.Service;
-import ru.tinkoff.edu.java.bot.dto.request.LinkUpdateRequest;
 import ru.tinkoff.edu.java.scrapper.configuration.ApplicationConfig;
+import ru.tinkoff.edu.java.scrapper.dto.request.LinkUpdateRequest;
 
 import static org.springframework.web.servlet.view.json.MappingJackson2JsonView.DEFAULT_CONTENT_TYPE;
 
