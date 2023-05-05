@@ -2,6 +2,11 @@ app:
   test: hi
   scheduler:
     interval: 5000
+  database-access-type: jpa
+  queue: qScrapper
+  exchange: exScrapper
+  useQueue: true
+
 
 springdoc:
   swagger-ui:
@@ -16,7 +21,23 @@ server:
 spring:
   application:
     name: test
+  jpa:
+    hibernate:
+      ddl-auto: update
+      format-sql: true
+    show-sql: true
 
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/scrapper
+    username: arina
+    driver-class-name: org.postgresql.Driver
+    password: "0000"
+
+
+github:
+  token: ${GITHUB_TOKEN}
 
 
 

@@ -12,3 +12,7 @@ buildNumber.properties
 
 .idea
 *.iml
+
+
+/migration/rabbitmq_data/
+/migration/postgres_data/

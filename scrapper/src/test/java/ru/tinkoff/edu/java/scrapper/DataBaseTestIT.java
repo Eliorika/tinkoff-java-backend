@@ -1,5 +1,6 @@
-package com.liquabase.migration;
+package ru.tinkoff.edu.java.scrapper;
 
+import ru.tinkoff.edu.java.scrapper.repository.IntegrationEnvironment;
 import org.junit.Test;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 
@@ -10,7 +11,7 @@ import java.sql.Statement;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class LinkInsertTest extends  IntegrationEnvironment{
+public class DataBaseTestIT extends IntegrationEnvironment {
 
     @Test
     public void insertTest(){
@@ -18,7 +19,7 @@ public class LinkInsertTest extends  IntegrationEnvironment{
         IntegrationEnvironment.runMigrations(c);
         try {
             Statement st = DriverManager.getConnection(c.getJdbcUrl(), c.getUsername(), c.getPassword()).createStatement();
-            int res = st.executeUpdate("INSERT INTO links(link, last_checked) VALUES (\'github\', now())");
+            int res = st.executeUpdate("INSERT INTO links(link, last_checked) VALUES ('github', now())");
             assertEquals(res, 1);
         } catch (SQLException e) {
             throw new RuntimeException(e);

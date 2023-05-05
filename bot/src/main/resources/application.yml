@@ -1,5 +1,9 @@
-app:
+app-bot:
   test: hi
+  queue: qScrapper
+  exchange: exScrapper
+
+
 
 springdoc:
   swagger-ui:
@@ -14,6 +18,10 @@ server:
 spring:
   application:
     name: test
+  rabbitmq:
+    listener:
+      simple:
+        default-requeue-rejected: false
 
 telegram:
   bot-name: ${BOT_NAME}

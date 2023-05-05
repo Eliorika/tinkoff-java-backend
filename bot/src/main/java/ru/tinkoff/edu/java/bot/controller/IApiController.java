@@ -57,10 +57,10 @@ public interface IApiController {
         consumes = { "application/json" }
     )
 
-    default ResponseEntity<Void> updatesPost(
+    default void update(
         @Parameter(name = "LinkUpdateRequest", description = "", required = true) @Valid @RequestBody LinkUpdateRequest linkUpdateRequest
     ) {
-        return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+
 
     }
 

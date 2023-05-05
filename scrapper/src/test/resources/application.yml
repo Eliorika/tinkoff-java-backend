@@ -1,0 +1,35 @@
+app:
+  test: hi
+  scheduler:
+    interval: 5000
+  database-access-type: jpa
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+  api-docs:
+    path: /api-docs
+
+server:
+  port: 8181
+
+spring:
+  application:
+    name: test
+  jpa:
+    hibernate:
+      ddl-auto: create
+      format-sql: true
+    show-sql: true
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/scrapper
+    username: arina
+    driver-class-name: org.postgresql.Driver
+    password: "0000"
+
+github:
+  token: ${GITHUB_TOKEN}

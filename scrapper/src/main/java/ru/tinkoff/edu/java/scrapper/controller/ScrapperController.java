@@ -1,5 +1,6 @@
 
 package ru.tinkoff.edu.java.scrapper.controller;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import ru.tinkoff.edu.java.scrapper.dto.request.RemoveLinkRequest;
 import ru.tinkoff.edu.java.scrapper.dto.response.ApiErrorResponse;
 import ru.tinkoff.edu.java.scrapper.dto.response.LinkResponse;
 import ru.tinkoff.edu.java.scrapper.dto.response.ListLinksResponse;
+import ru.tinkoff.edu.java.scrapper.service.LinksService;
+import ru.tinkoff.edu.java.scrapper.service.TgChatService;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
@@ -19,34 +22,38 @@ import java.util.List;
 
 @RestControllerAdvice
 @RestController
+@RequiredArgsConstructor
 public class ScrapperController {
 
+    private final LinksService linksService;
+    private final TgChatService tgChatService;
+
+
     @PostMapping("/tg-chat/{id}")
-    public ResponseEntity<Void> registerChat(@PathVariable Long id) {
-        return ResponseEntity.ok().build();
+    public void registerChat(@PathVariable Long id) {
+        tgChatService.register(id);
     }
 
     @DeleteMapping("/tg-chat/{id}")
-    public ResponseEntity<Void> deleteChat(@PathVariable Long id) {
-        return ResponseEntity.ok().build();
+    public void deleteChat(@PathVariable Long id) {
+        tgChatService.unregister(id);
     }
 
     @GetMapping("/links")
-    public ResponseEntity<ListLinksResponse> getLinks(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id) {
-
-        ListLinksResponse links = new ListLinksResponse(new ArrayList<>(),0);
-        return ResponseEntity.ok(links);
+    public ListLinksResponse getLinks(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id) {
+        ListLinksResponse links = ListLinksResponse.fromLinkListToResponse(linksService.listAll(id));
+        return links;
     }
 
     @PostMapping("/links")
-    public ResponseEntity<LinkResponse> addLink( @RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody AddLinkRequest request) {
-        LinkResponse link = new LinkResponse(id, "http://localhost");
-        return ResponseEntity.ok(link);
+    public LinkResponse addLink( @RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody AddLinkRequest request) {
+        LinkResponse link =LinkResponse.fromLinkToLinkResponse(linksService.add(id, request.getUrl()));
+        return link;
     }
 
     @DeleteMapping("/links")
-    public ResponseEntity<Void> removeLink(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody RemoveLinkRequest request) {
-        return ResponseEntity.ok().build();
+    public LinkResponse removeLink(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody RemoveLinkRequest request) {
+        return LinkResponse.fromLinkToLinkResponse(linksService.remove(id, request.getUrl()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

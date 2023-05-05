@@ -6,15 +6,17 @@ services:
     image: 'postgres:15.2-alpine'
     container_name: postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
     environment:
-      - POSTGRES_USER=admin
+      - POSTGRES_USER=arina
       - POSTGRES_PASSWORD=0000
-      - POSTGRES_DB=scrapperDB
+      - POSTGRES_DB=scrapper
     restart: always
     networks:
       - backend
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
 
   liquibase-migrations:
     image: liquibase/liquibase:4.18
@@ -24,14 +26,28 @@ services:
       - --hub-mode=off
       - --changelog-file=master.yaml
       - --driver=org.postgresql.Driver
-      - --url=jdbc:postgresql://postgres:5432/scrapperDB
-      - --username=admin
+      - --url=jdbc:postgresql://postgres:5432/scrapper
+      - --username=arina
       - --password=0000
       - update
     volumes:
-      - ./migrations:/liquibase/changelog
+        - ./migrations:/liquibase/changelog
     networks:
       - backend
+    restart: on-failure
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - ./rabbitmq_data:/var/lib/rabbitmq
 
 networks:
   backend: {}

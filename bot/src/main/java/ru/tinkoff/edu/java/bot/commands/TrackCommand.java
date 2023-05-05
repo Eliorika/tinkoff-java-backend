@@ -29,7 +29,7 @@ public class TrackCommand implements Command{
         String message = update.getMessage().getText();
         String link = message.substring(command().length()).trim();
         try {
-            scrapperClient.addLink(chatId, new AddLinkRequest(new URI("http://localhost")));
+            scrapperClient.addLink(chatId, new AddLinkRequest(new URI(link)));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
