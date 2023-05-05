@@ -1,7 +1,6 @@
 package ru.tinkoff.edu.java.scrapper.service;
 
 
-import org.openapitools.model.LinkUpdate;
 import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.client.BotClient;
 import ru.tinkoff.edu.java.scrapper.configuration.ApplicationConfig;
