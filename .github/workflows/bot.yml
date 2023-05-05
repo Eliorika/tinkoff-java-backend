@@ -32,3 +32,10 @@ jobs:
 
       - name: Build Docker image
         run: docker build -f bot.dockerfile -t ${{ env.REGISTRY}}/${{ env.AUTHOR }}/${{ env.IMAGE_NAME }}:latest .
+
+      - name: Log in to the Container registry
+          uses: docker/login-action@v1
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
