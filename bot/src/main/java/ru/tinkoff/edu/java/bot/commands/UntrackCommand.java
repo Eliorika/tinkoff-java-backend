@@ -18,7 +18,7 @@ public class UntrackCommand implements Command{
 
     @Override
     public String about() {
-        return "remove link from a tracking list. Format: \"/untrack [link]\"";
+        return "remove the link from a tracking list. Format: \"/untrack [link]\"";
     }
 
     @Override

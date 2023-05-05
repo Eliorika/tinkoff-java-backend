@@ -42,7 +42,7 @@ public class LinkUpdaterScheduler {
 //                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
 //                            "New pushes in repo!", updates.get(link)));
                     sendUpdateService.sendMessage(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
-                            "New pushes in repo!", updates.get(link)));
+                            "New push in repo!", updates.get(link)));
                 }
             } else if (parseResult instanceof StackOverflowResult soResult) {
                 StackOverflowResponse response = stackOverflowClient.fetchQuestion(soResult.id());
