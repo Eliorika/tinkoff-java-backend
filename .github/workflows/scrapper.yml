@@ -1,0 +1,35 @@
+name: Build scrapper
+
+on:
+  push:
+    paths:
+      - 'scrapper/**'
+
+environment:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: scrapper
+  AUTHOR: eliorika
+
+permissions:
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build scrapper
+        run: mvn package -pl scrapper -am
+
+      - name: Build Docker image
+        run: docker build -f scrapper.dockerfile -t ${{ environment.REGISTRY}}/${{ environment.AUTHOR }}/${{ environment.IMAGE_NAME }}:latest .
+
