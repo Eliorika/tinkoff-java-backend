@@ -24,35 +24,38 @@ public class JooqListLinksRepository implements ListLinksRepo {
 
     @Override
     public List<TrackLink> findAll() {
-        var list = dslContext.select(LINKS_LIST.TG_CHAT, LINKS_LIST.LINK_ID, LINKS_LIST.TRACK_ID, LINKS.LAST_CHECKED,LINKS.LINK)
-                .from(LINKS_LIST).join(LINKS).using(LINKS.LINK_ID).fetch();
+        var list = dslContext.select(LINKS_LIST.TG_CHAT, LINKS_LIST.LINK_ID,
+                LINKS_LIST.TRACK_ID, LINKS.LAST_CHECKED,LINKS.LINK).from(LINKS_LIST).join(LINKS).using(LINKS.LINK_ID)
+            .fetch();
         return list.stream().map(this::fromRecord).toList();
     }
 
     @Override
     public List<TrackLink> findAllByChatId(long chatId) {
-        var list = dslContext.select(LINKS_LIST.TG_CHAT, LINKS_LIST.LINK_ID, LINKS_LIST.TRACK_ID, LINKS.LAST_CHECKED,LINKS.LINK)
+        var list = dslContext.select(LINKS_LIST.TG_CHAT, LINKS_LIST.LINK_ID,
+                LINKS_LIST.TRACK_ID, LINKS.LAST_CHECKED,LINKS.LINK)
                 .from(LINKS_LIST).join(LINKS).using(LINKS.LINK_ID).where(LINKS_LIST.TG_CHAT.eq(chatId)).fetch();
         return list.stream().map(this::fromRecord).toList();
     }
 
     @Override
     public List<TrackLink> findAllByLinkId(long linkId) {
-        var list = dslContext.select(LINKS_LIST.TG_CHAT, LINKS_LIST.LINK_ID, LINKS_LIST.TRACK_ID, LINKS.LAST_CHECKED,LINKS.LINK)
+        var list = dslContext.select(LINKS_LIST.TG_CHAT, LINKS_LIST.LINK_ID,
+                LINKS_LIST.TRACK_ID, LINKS.LAST_CHECKED,LINKS.LINK)
                 .from(LINKS_LIST).join(LINKS).using(LINKS.LINK_ID).where(LINKS_LIST.LINK_ID.eq(linkId)).fetch();
         return list.stream().map(this::fromRecord).toList();
     }
 
     @Override
-    public void add(long chat_id, long linkId) {
-        dslContext.insertInto(LINKS_LIST).set(LINKS_LIST.TG_CHAT, chat_id).
+    public void add(long chatId, long linkId) {
+        dslContext.insertInto(LINKS_LIST).set(LINKS_LIST.TG_CHAT, chatId).
                 set(LINKS_LIST.LINK_ID, linkId).execute();
     }
 
     @Override
-    public void remove(long chat_id, long link_id) {
+    public void remove(long chatId, long linkId) {
         dslContext.deleteFrom(LINKS_LIST)
-                .where(LINKS_LIST.LINK_ID.eq(link_id)).and( LINKS_LIST.TG_CHAT.eq(chat_id))
+                .where(LINKS_LIST.LINK_ID.eq(linkId)).and( LINKS_LIST.TG_CHAT.eq(chatId))
                 .execute();
     }
 

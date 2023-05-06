@@ -29,9 +29,9 @@ public class JooqLinkRepository implements LinkRepo {
     }
 
     @Override
-    public List<Link> findAllByChat(long chat_id) {
+    public List<Link> findAllByChat(long chatId) {
         var list = dslContext.select().from(LINKS).join(LINKS_LIST).using(LINKS.LINK_ID)
-                .where(LINKS_LIST.TG_CHAT.eq(chat_id)).fetchInto(Links.class);
+                .where(LINKS_LIST.TG_CHAT.eq(chatId)).fetchInto(Links.class);
         return fromListJLinks(list);
     }
 

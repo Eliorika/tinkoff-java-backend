@@ -50,10 +50,12 @@ public class LinkUpdaterScheduler {
                 }
 
                 var question = response.getAnswersTime();
-                int qAfterUpdate = question.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1).collect(Collectors.toList()).size();
+                int qAfterUpdate = question.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1)
+                    .collect(Collectors.toList()).size();
 
                 var comment = response.getCommentsTime();
-                int cAfterUpdate = comment.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1).collect(Collectors.toList()).size();
+                int cAfterUpdate = comment.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1)
+                    .collect(Collectors.toList()).size();
 
                 if(qAfterUpdate > 0){
                     sendUpdateService.sendMessage(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),

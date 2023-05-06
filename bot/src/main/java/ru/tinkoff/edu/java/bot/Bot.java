@@ -22,7 +22,7 @@ public class Bot extends TelegramLongPollingBot {
     private String token;
     private final UpdateProcessor updateProcessor;
 
-    private static final Logger log = Logger.getLogger(Bot.class);
+    private static final Logger LOG = Logger.getLogger(Bot.class);
 
     public Bot(UpdateProcessor updateProcessor) {
         this.updateProcessor = updateProcessor;
@@ -41,7 +41,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        log.debug("update received");
+        LOG.debug("update received");
         if(update.hasMessage()&& update.getMessage().hasText()) {
             SendMessage sm = updateProcessor.process(update);
             try {

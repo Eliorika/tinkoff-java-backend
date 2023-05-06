@@ -21,7 +21,8 @@ import jakarta.annotation.Generated;
 import ru.tinkoff.edu.java.bot.dto.request.LinkUpdateRequest;
 import ru.tinkoff.edu.java.bot.dto.response.ApiErrorResponse;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-27T23:06:36.983276500+03:00[Europe/Moscow]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
+           date = "2023-03-27T23:06:36.983276500+03:00[Europe/Moscow]")
 @Validated
 @Tag(name = "updates", description = "the updates API")
 @RequestMapping("${openapi.bot.base-path:}")

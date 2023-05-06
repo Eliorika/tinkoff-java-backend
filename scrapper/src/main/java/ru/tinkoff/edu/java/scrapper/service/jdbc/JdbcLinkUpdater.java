@@ -41,7 +41,7 @@ public class JdbcLinkUpdater implements LinkUpdater {
             map.put(link, new ArrayList<>());
             var tracks = listLinksRepository.findAllByLinkId(link.getLink_id());
             for(TrackLink ln: tracks){
-                map.get(link).add(ln.getTg_chat().getTg_chat());
+                map.get(link).add(ln.getTg_chat().getTgChat());
             }
         }
         return map;

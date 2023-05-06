@@ -49,35 +49,41 @@ public class ScrapperController {
     }
 
     @DeleteMapping("/links")
-    public LinkResponse removeLink(@RequestHeader(value = "Tg-Chat-Id") Long id, @RequestBody RemoveLinkRequest request) {
+    public LinkResponse removeLink(@RequestHeader(value = "Tg-Chat-Id") Long id,
+        @RequestBody RemoveLinkRequest request) {
         return LinkResponse.fromLinkToLinkResponse(linksService.remove(id, request.getUrl()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidationException(MethodArgumentNotValidException e) {
-        List<String> errors = e.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).toList();
-        ApiErrorResponse response = new ApiErrorResponse("Validation failed", "400", e.getClass().getSimpleName(), e.getMessage(), errors);
+        List<String> errors = e.getBindingResult().getAllErrors().stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage).toList();
+        ApiErrorResponse response = new ApiErrorResponse("Validation failed", "400",
+            e.getClass().getSimpleName(), e.getMessage(), errors);
         return ResponseEntity.badRequest().body(response);
     }
 
     @ExceptionHandler(InstanceNotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleChatNotFoundException(InstanceNotFoundException e) {
         List<String> errors = List.of(Arrays.toString(e.getStackTrace()));
-        ApiErrorResponse response = new ApiErrorResponse("Chat not found", "404", e.getClass().getSimpleName(), e.getMessage(), errors);
+        ApiErrorResponse response = new ApiErrorResponse("Chat not found", "404",
+            e.getClass().getSimpleName(), e.getMessage(), errors);
         return ResponseEntity.badRequest().body(response);
     }
 
     @ExceptionHandler(AttributeNotFoundException.class)
     public ResponseEntity<ApiErrorResponse> handleLinkNotFoundException(InstanceNotFoundException e) {
         List<String> errors = List.of(Arrays.toString(e.getStackTrace()));
-        ApiErrorResponse response = new ApiErrorResponse("Link not found", "404", e.getClass().getSimpleName(), e.getMessage(), errors);
+        ApiErrorResponse response = new ApiErrorResponse("Link not found", "404",
+            e.getClass().getSimpleName(), e.getMessage(), errors);
         return ResponseEntity.badRequest().body(response);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleException(Exception e) {
         List<String> errors = List.of(Arrays.toString(e.getStackTrace()));
-        ApiErrorResponse response = new ApiErrorResponse("Internal server error", "500", e.getClass().getSimpleName(), e.getMessage(), errors);
+        ApiErrorResponse response = new ApiErrorResponse("Internal server error", "500",
+            e.getClass().getSimpleName(), e.getMessage(), errors);
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
     }
 }

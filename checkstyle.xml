@@ -37,15 +37,6 @@
     <module name="FileTabCharacter"/>
 
 
-    <!-- https://checkstyle.org/config_misc.html -->
-    <!--      Check for trailing spaces.        -->
-    <module name="RegexpSingleline">
-        <property name="format" value="\s+$"/>
-        <property name="minimum" value="0"/>
-        <property name="maximum" value="0"/>
-        <property name="message" value="Line has trailing spaces."/>
-    </module>
-
     <module name="TreeWalker">
         <!-- <module name="PackageAnnotation"/> -->
 
@@ -60,7 +51,6 @@
         <module name="InterfaceTypeParameterName"/>
         <module name="LambdaParameterName"/>
         <module name="LocalVariableName"/>
-        <module name="MemberName"/>
         <module name="MethodName"/>
         <module name="MethodTypeParameterName"/>
         <module name="PackageName"/>
@@ -83,20 +73,9 @@
         <!--<module name="DeclarationOrder"/>-->
         <module name="DefaultComesLast"/>
         <module name="EmptyStatement"/>
-        <!-- <module name="EqualsAvoidNull"/> -->
-        <module name="EqualsHashCode"/>
         <!-- <module name="ExplicitInitialization"/> -->
         <module name="FallThrough"/>
-        <!-- <module name="FinalLocalVariable"/> -->
-        <module name="HiddenField">
-            <property name="tokens" value="VARIABLE_DEF"/>
-        </module>
-        <!-- <module name="IllegalCatch"/> -->
 
-        <!-- <module name="IllegalThrows"/> -->
-        <!-- <module name="IllegalToken"/> -->
-        <!-- <module name="IllegalTokenText"/> -->
-        <!-- <module name="IllegalType"/> -->
         <module name="InnerAssignment"/>
         <!-- <module name="MissingCtor"/> -->
         <module name="ModifiedControlVariable"/>

@@ -8,8 +8,8 @@ public interface ListLinksRepo {
     List<TrackLink> findAll();
     List<TrackLink> findAllByChatId(long chatId);
     List<TrackLink> findAllByLinkId(long linkId);
-    void add(long chat_id, long linkId);
-    void remove(long chat_id, long link_id);
+    void add(long chatId, long linkId);
+    void remove(long chatId, long linkId);
 
 
 }

@@ -32,11 +32,11 @@ public class JdbcTemplateLinkRepository implements LinkRepo {
         return template.query(sql, rowMapper);
     }
 
-    public List<Link> findAllByChat(long chat_id){
+    public List<Link> findAllByChat(long chatId){
         String sql = """
                         select * from links_list join links l on l.link_id = links_list.link_id
                         where tg_chat = ?""";
-        return template.query(sql, rowMapper, chat_id);
+        return template.query(sql, rowMapper, chatId);
     }
 
     public Link findByUrl(String url) {

@@ -14,7 +14,8 @@ public class SendUpdateService {
     private final BotClient botClient;
     private final ScrapperQueueProducer scrapperQueueProducer;
 
-    public SendUpdateService(ApplicationConfig config, BotClient botClient, ScrapperQueueProducer scrapperQueueProducer) {
+    public SendUpdateService(ApplicationConfig config, BotClient botClient,
+        ScrapperQueueProducer scrapperQueueProducer) {
         this.useQueue = config.useQueue();
         this.botClient = botClient;
         this.scrapperQueueProducer = scrapperQueueProducer;

@@ -33,7 +33,8 @@ public class LinkEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         LinkEntity link = (LinkEntity) o;
-        return this.link_id == link.link_id && Objects.equals(this.link, link.link) && Objects.equals(this.lastUpdated, link.lastUpdated);
+        return this.link_id == link.link_id && Objects.equals(this.link, link.link) &&
+            Objects.equals(this.lastUpdated, link.lastUpdated);
     }
 
 }

@@ -23,7 +23,8 @@ public class JdbcAccessConfiguration {
     }
 
     @Bean
-    public LinkUpdater linkUpdater(JdbcTemplateLinkRepository linkRepository, JdbcTemplateListLinksRepository chatLinkRepository) {
+    public LinkUpdater linkUpdater(JdbcTemplateLinkRepository linkRepository,
+        JdbcTemplateListLinksRepository chatLinkRepository) {
         return new JdbcLinkUpdater(linkRepository, chatLinkRepository);
     }
 
