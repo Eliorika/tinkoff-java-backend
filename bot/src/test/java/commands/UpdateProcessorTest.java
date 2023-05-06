@@ -32,7 +32,7 @@ public class UpdateProcessorTest {
 
         SendMessage result = updateProcessor.process(update);
         SendMessage expected = new SendMessage(Long.toString(chatId),
-            "Sorry, I have no idea what are you talking about. Use /help to see list of commands I know");
+            "Sorry, I have no idea what are you talking about. Use /help to see the list of commands I know");
 
         assertEquals(result.getChatId(), expected.getChatId());
         assertEquals(result.getText(), expected.getText());
