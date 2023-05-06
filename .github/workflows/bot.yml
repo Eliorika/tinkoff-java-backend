@@ -56,4 +56,4 @@ jobs:
           cache: maven
 
       - name: Run Checkstyle
-        run: mvn -pl bot -am checkstyle:check
+        run: mvn -pl bot -am -X checkstyle:check
