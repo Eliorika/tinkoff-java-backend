@@ -1,3 +1,5 @@
+package commands;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -29,7 +31,8 @@ public class UpdateProcessorTest {
         Mockito.when(message.getText()).thenReturn(command);
 
         SendMessage result = updateProcessor.process(update);
-        SendMessage expected = new SendMessage(Long.toString(chatId), "Sorry, I have no idea what are you talking about. Use /help to see list of commands I know");
+        SendMessage expected = new SendMessage(Long.toString(chatId),
+            "Sorry, I have no idea what are you talking about. Use /help to see list of commands I know");
 
         assertEquals(result.getChatId(), expected.getChatId());
         assertEquals(result.getText(), expected.getText());
