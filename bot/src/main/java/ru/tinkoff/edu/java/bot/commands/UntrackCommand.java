@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
-import ru.tinkoff.edu.java.bot.client.dto.request.AddLinkRequest;
 import ru.tinkoff.edu.java.bot.client.dto.request.RemoveLinkRequest;
 
 @RequiredArgsConstructor

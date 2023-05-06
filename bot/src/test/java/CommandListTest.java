@@ -1,17 +1,11 @@
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.Chat;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.tinkoff.edu.java.bot.UpdateProcessor;
-import ru.tinkoff.edu.java.bot.client.ClientConfiguration;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
 import ru.tinkoff.edu.java.bot.client.dto.response.LinkResponse;
 import ru.tinkoff.edu.java.bot.client.dto.response.ListLinksResponse;
-import ru.tinkoff.edu.java.bot.commands.CommandFactory;
 import ru.tinkoff.edu.java.bot.commands.ListCommand;
 
 import java.net.URI;

@@ -10,8 +10,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -58,7 +56,7 @@ public interface IApiController {
     )
 
     default void update(
-        @Parameter(name = "LinkUpdateRequest", description = "", required = true) @Valid @RequestBody LinkUpdateRequest linkUpdateRequest
+        @Parameter(name = "LinkUpdateRequest", required = true) @Valid @RequestBody LinkUpdateRequest linkUpdateRequest
     ) {
 
 

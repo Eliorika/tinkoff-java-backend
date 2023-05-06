@@ -7,14 +7,10 @@ import org.springframework.stereotype.Repository;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Chat;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.dto.TrackLink;
-import ru.tinkoff.edu.java.scrapper.domain.jooq.tables.pojos.Links;
-import ru.tinkoff.edu.java.scrapper.domain.jooq.tables.pojos.LinksList;
 import ru.tinkoff.edu.java.scrapper.domain.repository.ListLinksRepo;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
 import java.util.List;
 
 import static ru.tinkoff.edu.java.scrapper.domain.jooq.Tables.LINKS;

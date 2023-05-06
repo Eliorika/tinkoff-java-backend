@@ -1,6 +1,5 @@
 package ru.tinkoff.edu.java.bot.commands;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
 

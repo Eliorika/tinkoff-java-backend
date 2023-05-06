@@ -1,10 +1,8 @@
 package ru.tinkoff.edu.java.scrapper.domain.etities;
 
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import ru.tinkoff.edu.java.scrapper.domain.dto.Chat;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,7 +27,7 @@ public class ChatEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ChatEntity chat = (ChatEntity) o;
-        return this.chat == chat.chat;
+        return this.chat.equals(chat.chat);
     }
 
 }

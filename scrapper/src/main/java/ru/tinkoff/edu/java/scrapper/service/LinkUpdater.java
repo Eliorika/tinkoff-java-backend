@@ -2,8 +2,6 @@ package ru.tinkoff.edu.java.scrapper.service;
 
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 
-import java.net.URI;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 

@@ -27,8 +27,6 @@ spring:
       format-sql: true
     show-sql: true
 
-
-
   datasource:
     url: jdbc:postgresql://localhost:5433/scrapper
     username: arina

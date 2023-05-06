@@ -38,8 +38,6 @@ public class LinkUpdaterScheduler {
             if (parseResult instanceof GitHubResult ghResult){
                 GitHubResponse response = gitHubClient.fetchRepository(ghResult.sUser(), ghResult.sRepository());
                 if (response.getUpdatedAt().compareTo(link.getLastUpdated()) > -1) {
-//                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
-//                            "New pushes in repo!", updates.get(link)));
                     sendUpdateService.sendMessage(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New push in repo!", updates.get(link)));
                 }
@@ -47,8 +45,6 @@ public class LinkUpdaterScheduler {
                 StackOverflowResponse response = stackOverflowClient.fetchQuestion(soResult.id());
 
                 if (response.getUpdatedAt().compareTo(link.getLastUpdated()) > -1) {
-//                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
-//                            "New updates in question!", updates.get(link)));
                     sendUpdateService.sendMessage(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New updates in question!", updates.get(link)));
                 }
@@ -60,15 +56,11 @@ public class LinkUpdaterScheduler {
                 int cAfterUpdate = comment.stream().filter(time -> time.compareTo(link.getLastUpdated()) > -1).collect(Collectors.toList()).size();
 
                 if(qAfterUpdate > 0){
-//                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
-//                            "New answer(s)!", updates.get(link)));
                     sendUpdateService.sendMessage(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New answer(s)!", updates.get(link)));
                 }
 
                 if(cAfterUpdate > 0){
-//                    botClient.update(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
-//                            "New comment(s)!", updates.get(link)));
                     sendUpdateService.sendMessage(new LinkUpdateRequest(link.getLink_id(), link.getLink().toString(),
                             "New comment(s)!", updates.get(link)));
 

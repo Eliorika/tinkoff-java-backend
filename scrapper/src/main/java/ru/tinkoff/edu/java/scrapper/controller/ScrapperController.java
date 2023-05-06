@@ -16,7 +16,6 @@ import ru.tinkoff.edu.java.scrapper.service.TgChatService;
 
 import javax.management.AttributeNotFoundException;
 import javax.management.InstanceNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,19 +39,17 @@ public class ScrapperController {
     }
 
     @GetMapping("/links")
-    public ListLinksResponse getLinks(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id) {
-        ListLinksResponse links = ListLinksResponse.fromLinkListToResponse(linksService.listAll(id));
-        return links;
+    public ListLinksResponse getLinks(@RequestHeader(value = "Tg-Chat-Id") Long id) {
+        return ListLinksResponse.fromLinkListToResponse(linksService.listAll(id));
     }
 
     @PostMapping("/links")
-    public LinkResponse addLink( @RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody AddLinkRequest request) {
-        LinkResponse link =LinkResponse.fromLinkToLinkResponse(linksService.add(id, request.getUrl()));
-        return link;
+    public LinkResponse addLink( @RequestHeader(value = "Tg-Chat-Id") Long id, @RequestBody AddLinkRequest request) {
+        return LinkResponse.fromLinkToLinkResponse(linksService.add(id, request.getUrl()));
     }
 
     @DeleteMapping("/links")
-    public LinkResponse removeLink(@RequestHeader(value = "Tg-Chat-Id", required = true) Long id, @RequestBody RemoveLinkRequest request) {
+    public LinkResponse removeLink(@RequestHeader(value = "Tg-Chat-Id") Long id, @RequestBody RemoveLinkRequest request) {
         return LinkResponse.fromLinkToLinkResponse(linksService.remove(id, request.getUrl()));
     }
 

@@ -56,7 +56,7 @@ public class JooqListLinkTestIT extends IntegrationEnvironment {
     @Transactional
     @Rollback
     public void removeTrackLinkTest(){
-        Long chatID = (long)123;
+        long chatID = (long)123;
         chatRepository.add(chatID);
 
         String linkUrl1 = "github.com";

@@ -1,8 +1,6 @@
 package ru.tinkoff.edu.java.bot.configuration;
 
-import org.openapitools.model.LinkUpdate;
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -27,11 +25,6 @@ public class RabbitMqConfig {
         jsonConverter.setClassMapper(classMapper);
         return jsonConverter;
     }
-
-//    @Bean
-//    public MessageConverter jsonMessageConverter() {
-//        return new Jackson2JsonMessageConverter();
-//    }
 
     @Bean
     public ConnectionFactory rabbit() {

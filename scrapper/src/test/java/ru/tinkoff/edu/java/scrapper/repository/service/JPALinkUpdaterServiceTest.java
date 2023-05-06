@@ -16,8 +16,6 @@ import ru.tinkoff.edu.java.scrapper.service.jpa.JpaChatService;
 import ru.tinkoff.edu.java.scrapper.service.jpa.JpaLinkService;
 import ru.tinkoff.edu.java.scrapper.service.jpa.JpaLinksUpdater;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;

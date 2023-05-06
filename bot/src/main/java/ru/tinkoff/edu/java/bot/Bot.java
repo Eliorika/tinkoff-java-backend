@@ -1,9 +1,7 @@
 package ru.tinkoff.edu.java.bot;
 
 
-import jakarta.annotation.PostConstruct;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;

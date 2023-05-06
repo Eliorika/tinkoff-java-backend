@@ -3,10 +3,7 @@ package ru.tinkoff.edu.java.scrapper.domain.repository.jooq;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.tinkoff.edu.java.scrapper.domain.dto.Chat;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
-import ru.tinkoff.edu.java.scrapper.domain.jooq.Tables;
-import ru.tinkoff.edu.java.scrapper.domain.jooq.tables.pojos.Chats;
 import ru.tinkoff.edu.java.scrapper.domain.jooq.tables.pojos.Links;
 import ru.tinkoff.edu.java.scrapper.domain.repository.LinkRepo;
 

@@ -9,15 +9,13 @@ import ru.tinkoff.edu.java.scrapper.dto.request.LinkUpdateRequest;
 @Service
 public class ScrapperQueueProducer {
     private final RabbitTemplate rabbitTemplate;
-    private final MessageConverter jsonMessageConverter;
     private final String exchange;
     private final String queue;
 
-    public ScrapperQueueProducer(RabbitTemplate rabbitTemplate, ApplicationConfig applicationConfig, org.springframework.amqp.support.converter.MessageConverter jsonMessageConverter) {
+    public ScrapperQueueProducer(RabbitTemplate rabbitTemplate, ApplicationConfig applicationConfig) {
         this.rabbitTemplate = rabbitTemplate;
         exchange = applicationConfig.exchange();
         queue = applicationConfig.queue();
-        this.jsonMessageConverter = jsonMessageConverter;
     }
 
     public void send(LinkUpdateRequest update) {

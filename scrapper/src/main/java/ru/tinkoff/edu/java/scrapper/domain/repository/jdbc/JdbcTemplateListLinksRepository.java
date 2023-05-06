@@ -49,7 +49,7 @@ public class JdbcTemplateListLinksRepository implements ListLinksRepo {
     public void add(long chat_id, long linkId) {
         String sql = """
                      insert into links_list (tg_chat, link_id) values (?,?)
-                     on conflict do nothing 
+                     on conflict do nothing
                      """;
         jdbcTemplate.update(sql, chat_id, linkId);
     }

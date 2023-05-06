@@ -3,7 +3,6 @@ package ru.tinkoff.edu.java.linkparser.parsers;
 import ru.tinkoff.edu.java.linkparser.linkStructures.Result;
 
 import java.net.URI;
-import java.net.URL;
 
 public sealed interface LinkParser permits GitHubParser, StackOverflowParser, WrongHostParser {
     default Result parseLink(URI url) {
