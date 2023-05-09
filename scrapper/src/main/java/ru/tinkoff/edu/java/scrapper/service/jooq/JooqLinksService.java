@@ -1,8 +1,6 @@
 package ru.tinkoff.edu.java.scrapper.service.jooq;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqLinkRepository;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqListLinksRepository;

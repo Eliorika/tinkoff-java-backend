@@ -5,7 +5,7 @@ app:
   database-access-type: jpa
   queue: qScrapper
   exchange: exScrapper
-  useQueue: true
+  useQueue: false
 
 
 springdoc:
@@ -26,8 +26,6 @@ spring:
       ddl-auto: update
       format-sql: true
     show-sql: true
-
-
 
   datasource:
     url: jdbc:postgresql://localhost:5433/scrapper

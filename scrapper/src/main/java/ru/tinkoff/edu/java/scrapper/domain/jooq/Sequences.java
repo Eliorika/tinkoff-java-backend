@@ -27,10 +27,12 @@ public class Sequences {
     /**
      * The sequence <code>LINKS_SEQUENCE</code>
      */
-    public static final Sequence<Long> LINKS_SEQUENCE = Internal.createSequence("LINKS_SEQUENCE", DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
+    public static final Sequence<Long> LINKS_SEQUENCE = Internal.createSequence("LINKS_SEQUENCE",
+        DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
 
     /**
      * The sequence <code>TRACK_LINK_SEQUENCE</code>
      */
-    public static final Sequence<Long> TRACK_LINK_SEQUENCE = Internal.createSequence("TRACK_LINK_SEQUENCE", DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
+    public static final Sequence<Long> TRACK_LINK_SEQUENCE = Internal.createSequence("TRACK_LINK_SEQUENCE",
+        DefaultSchema.DEFAULT_SCHEMA, SQLDataType.BIGINT, null, null, null, null, false, null);
 }

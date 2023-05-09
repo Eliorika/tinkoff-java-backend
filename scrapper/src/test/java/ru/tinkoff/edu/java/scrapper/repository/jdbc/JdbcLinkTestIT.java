@@ -13,8 +13,6 @@ import java.time.OffsetDateTime;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.equalTo;
-
 
 @SpringBootTest(classes = {IntegrationEnvironment.EnvironmentConfig.class, JdbcTemplateLinkRepository.class})
 public class JdbcLinkTestIT extends IntegrationEnvironment {

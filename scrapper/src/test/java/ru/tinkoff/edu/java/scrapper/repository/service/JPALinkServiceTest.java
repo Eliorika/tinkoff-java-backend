@@ -19,8 +19,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 
 @DataJpaTest(excludeAutoConfiguration = LiquibaseAutoConfiguration.class)
 @Import({IntegrationEnvironment.JpaConfig.class, ServicesConfiguration.class})
@@ -76,8 +74,6 @@ public class JPALinkServiceTest extends IntegrationEnvironment {
             URI url2 = new URI(link2);
             jpaLinkService.add(id, url);
             jpaLinkService.add(id, url2);
-            //jpaChatRepository.flush();
-           // jpaLinkRepository.flush();
 
             jpaLinkService.remove(id, url);
             jpaChatRepository.flush();

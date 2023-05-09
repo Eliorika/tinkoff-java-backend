@@ -13,6 +13,8 @@ import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaChatRepository;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaLinkRepository;
 import ru.tinkoff.edu.java.scrapper.service.jpa.JpaChatService;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
@@ -43,7 +45,7 @@ public class JPAChatServiceTest extends IntegrationEnvironment {
         long id = 222;
         jpaChatService.register(id);
 
-        assertTrue(jpaChatRepository.findById(id).orElse(null)!= null);
+        assertNotNull(jpaChatRepository.findById(id).orElse(null));
     }
 
     @Test
@@ -52,7 +54,7 @@ public class JPAChatServiceTest extends IntegrationEnvironment {
         jpaChatService.register(id);
         jpaChatService.unregister(id);
 
-        assertTrue(jpaChatRepository.findById(id).orElse(null)== null);
+        assertNull(jpaChatRepository.findById(id).orElse(null));
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface LinkRepo {
 
     List<Link> findAll();
-    List<Link> findAllByChat(long chat_id);
+    List<Link> findAllByChat(long chatId);
     Link findByUrl(String url);
     Link add(String link, OffsetDateTime update);
     void remove(long id);

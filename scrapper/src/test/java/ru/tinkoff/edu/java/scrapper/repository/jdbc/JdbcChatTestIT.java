@@ -31,7 +31,7 @@ public class JdbcChatTestIT extends IntegrationEnvironment {
 
         assertThat(list, is(not(emptyIterable())));
         assertThat(list.size(), equalTo(1));
-        assertThat(list.get(0).getTg_chat(), equalTo(chatID));
+        assertThat(list.get(0).getTgChat(), equalTo(chatID));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class JdbcChatTestIT extends IntegrationEnvironment {
 
         assertThat(list, is(not(emptyIterable())));
         assertThat(list.size(), equalTo(1));
-        assertThat(list.get(0).getTg_chat(), equalTo(chatID2));
+        assertThat(list.get(0).getTgChat(), equalTo(chatID2));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class JdbcChatTestIT extends IntegrationEnvironment {
 
         assertThat(list, is(not(emptyIterable())));
         assertThat(list.size(), equalTo(2));
-        assertThat(list.get(0).getTg_chat(), equalTo(chatID1));
-        assertThat(list.get(1).getTg_chat(), equalTo(chatID2));
+        assertThat(list.get(0).getTgChat(), equalTo(chatID1));
+        assertThat(list.get(1).getTgChat(), equalTo(chatID2));
     }
 }

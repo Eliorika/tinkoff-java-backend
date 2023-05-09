@@ -1,6 +1,5 @@
 package ru.tinkoff.edu.java.bot.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -35,8 +34,11 @@ public class BotController implements IApiController{
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleException(MethodArgumentNotValidException e){
-        List<String> errors = e.getBindingResult().getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).toList();
-        ApiErrorResponse response = new ApiErrorResponse("Validation failed", "400", e.getClass().getSimpleName(), e.getMessage(), errors);
+        List<String> errors = e.getBindingResult().getAllErrors().stream()
+            .map(DefaultMessageSourceResolvable::getDefaultMessage).toList();
+
+        ApiErrorResponse response = new ApiErrorResponse("Validation failed", "400",
+            e.getClass().getSimpleName(), e.getMessage(), errors);
         return ResponseEntity.badRequest().body(response);
     }
 }

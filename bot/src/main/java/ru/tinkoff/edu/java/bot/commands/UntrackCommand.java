@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.tinkoff.edu.java.bot.client.ScrapperClient;
-import ru.tinkoff.edu.java.bot.client.dto.request.AddLinkRequest;
 import ru.tinkoff.edu.java.bot.client.dto.request.RemoveLinkRequest;
 
 @RequiredArgsConstructor
@@ -18,7 +17,7 @@ public class UntrackCommand implements Command{
 
     @Override
     public String about() {
-        return "remove link from a tracking list. Format: \"/untrack [link]\"";
+        return "remove the link from a tracking list. Format: \"/untrack [link]\"";
     }
 
     @Override

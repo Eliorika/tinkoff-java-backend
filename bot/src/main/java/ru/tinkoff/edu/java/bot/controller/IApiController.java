@@ -10,8 +10,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -23,7 +21,8 @@ import jakarta.annotation.Generated;
 import ru.tinkoff.edu.java.bot.dto.request.LinkUpdateRequest;
 import ru.tinkoff.edu.java.bot.dto.response.ApiErrorResponse;
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2023-03-27T23:06:36.983276500+03:00[Europe/Moscow]")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen",
+           date = "2023-03-27T23:06:36.983276500+03:00[Europe/Moscow]")
 @Validated
 @Tag(name = "updates", description = "the updates API")
 @RequestMapping("${openapi.bot.base-path:}")
@@ -58,7 +57,7 @@ public interface IApiController {
     )
 
     default void update(
-        @Parameter(name = "LinkUpdateRequest", description = "", required = true) @Valid @RequestBody LinkUpdateRequest linkUpdateRequest
+        @Parameter(name = "LinkUpdateRequest", required = true) @Valid @RequestBody LinkUpdateRequest linkUpdateRequest
     ) {
 
 

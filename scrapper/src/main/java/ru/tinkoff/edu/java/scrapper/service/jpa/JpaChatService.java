@@ -2,12 +2,9 @@ package ru.tinkoff.edu.java.scrapper.service.jpa;
 
 import lombok.RequiredArgsConstructor;
 import ru.tinkoff.edu.java.scrapper.domain.etities.ChatEntity;
-import ru.tinkoff.edu.java.scrapper.domain.etities.LinkEntity;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaChatRepository;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jpa.JpaLinkRepository;
 import ru.tinkoff.edu.java.scrapper.service.TgChatService;
-
-import java.util.List;
 
 @RequiredArgsConstructor
 public class JpaChatService implements TgChatService {
@@ -25,9 +22,6 @@ public class JpaChatService implements TgChatService {
 
     @Override
     public void unregister(long tgChatId) {
-        ChatEntity chat = jpaChatRepository.findById(tgChatId).orElse(null);
-        if(chat != null){
-            jpaChatRepository.delete(chat);
-        }
+        jpaChatRepository.findById(tgChatId).ifPresent(jpaChatRepository::delete);
     }
 }

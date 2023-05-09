@@ -3,10 +3,7 @@ package ru.tinkoff.edu.java.scrapper.domain.repository.jooq;
 import lombok.AllArgsConstructor;
 import org.jooq.DSLContext;
 import org.springframework.stereotype.Repository;
-import ru.tinkoff.edu.java.scrapper.domain.dto.Chat;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
-import ru.tinkoff.edu.java.scrapper.domain.jooq.Tables;
-import ru.tinkoff.edu.java.scrapper.domain.jooq.tables.pojos.Chats;
 import ru.tinkoff.edu.java.scrapper.domain.jooq.tables.pojos.Links;
 import ru.tinkoff.edu.java.scrapper.domain.repository.LinkRepo;
 
@@ -32,9 +29,9 @@ public class JooqLinkRepository implements LinkRepo {
     }
 
     @Override
-    public List<Link> findAllByChat(long chat_id) {
+    public List<Link> findAllByChat(long chatId) {
         var list = dslContext.select().from(LINKS).join(LINKS_LIST).using(LINKS.LINK_ID)
-                .where(LINKS_LIST.TG_CHAT.eq(chat_id)).fetchInto(Links.class);
+                .where(LINKS_LIST.TG_CHAT.eq(chatId)).fetchInto(Links.class);
         return fromListJLinks(list);
     }
 

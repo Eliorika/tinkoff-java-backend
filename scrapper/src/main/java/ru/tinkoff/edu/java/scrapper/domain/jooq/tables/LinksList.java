@@ -66,17 +66,20 @@ public class LinksList extends TableImpl<LinksListRecord> {
     /**
      * The column <code>LINKS_LIST.TRACK_ID</code>.
      */
-    public final TableField<LinksListRecord, Long> TRACK_ID = createField(DSL.name("TRACK_ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+    public final TableField<LinksListRecord, Long> TRACK_ID = createField(DSL.name("TRACK_ID"),
+        SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>LINKS_LIST.LINK_ID</code>.
      */
-    public final TableField<LinksListRecord, Long> LINK_ID = createField(DSL.name("LINK_ID"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<LinksListRecord, Long> LINK_ID = createField(DSL.name("LINK_ID"),
+        SQLDataType.BIGINT.nullable(false), this, "");
 
     /**
      * The column <code>LINKS_LIST.TG_CHAT</code>.
      */
-    public final TableField<LinksListRecord, Long> TG_CHAT = createField(DSL.name("TG_CHAT"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<LinksListRecord, Long> TG_CHAT = createField(DSL.name("TG_CHAT"),
+        SQLDataType.BIGINT.nullable(false), this, "");
 
     private LinksList(Name alias, Table<LinksListRecord> aliased) {
         this(alias, aliased, null);
@@ -230,7 +233,8 @@ public class LinksList extends TableImpl<LinksListRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Long, ? super Long, ? super Long, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Long, ? super Long,
+        ? super Long, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

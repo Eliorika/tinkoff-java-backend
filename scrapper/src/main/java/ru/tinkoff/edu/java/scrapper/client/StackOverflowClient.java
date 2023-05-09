@@ -30,7 +30,8 @@ public class StackOverflowClient {
                     .getJSONArray("items").getJSONObject(0);
             var questions = getAnswersTime(questionId);
             var comments = getCommentsTime(questionId);
-            return new StackOverflowResponse(result.getString("question_id"),fromLongToOffsetDateTime(result.getLong("last_activity_date")),
+            return new StackOverflowResponse(result.getString("question_id"),
+                fromLongToOffsetDateTime(result.getLong("last_activity_date")),
                     questions,
                     comments);
         } catch (JSONException e) {
