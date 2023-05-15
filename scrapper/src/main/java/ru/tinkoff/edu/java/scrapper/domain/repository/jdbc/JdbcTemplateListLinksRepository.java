@@ -46,17 +46,17 @@ public class JdbcTemplateListLinksRepository implements ListLinksRepo {
         return jdbcTemplate.query(sql, rowMapper, linkId);
     }
 
-    public void add(long chat_id, long linkId) {
+    public void add(long chatId, long linkId) {
         String sql = """
                      insert into links_list (tg_chat, link_id) values (?,?)
-                     on conflict do nothing 
+                     on conflict do nothing
                      """;
-        jdbcTemplate.update(sql, chat_id, linkId);
+        jdbcTemplate.update(sql, chatId, linkId);
     }
 
-    public void remove(long chat_id, long link_id) {
+    public void remove(long chatId, long linkId) {
         String sql = "delete from links_list where tg_chat = ? and link_id = ?";
-        jdbcTemplate.update(sql, chat_id, link_id);
+        jdbcTemplate.update(sql, chatId, linkId);
     }
 
 }

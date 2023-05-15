@@ -67,17 +67,20 @@ public class Links extends TableImpl<LinksRecord> {
     /**
      * The column <code>LINKS.LINK_ID</code>.
      */
-    public final TableField<LinksRecord, Long> LINK_ID = createField(DSL.name("LINK_ID"), SQLDataType.BIGINT.nullable(false).identity(true), this, "");
+    public final TableField<LinksRecord, Long> LINK_ID = createField(DSL.name("LINK_ID"),
+        SQLDataType.BIGINT.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>LINKS.LINK</code>.
      */
-    public final TableField<LinksRecord, String> LINK = createField(DSL.name("LINK"), SQLDataType.VARCHAR(255).nullable(false), this, "");
+    public final TableField<LinksRecord, String> LINK = createField(DSL.name("LINK"),
+        SQLDataType.VARCHAR(255).nullable(false), this, "");
 
     /**
      * The column <code>LINKS.LAST_CHECKED</code>.
      */
-    public final TableField<LinksRecord, LocalDateTime> LAST_CHECKED = createField(DSL.name("LAST_CHECKED"), SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
+    public final TableField<LinksRecord, LocalDateTime> LAST_CHECKED = createField(DSL.name("LAST_CHECKED"),
+        SQLDataType.LOCALDATETIME(6).nullable(false), this, "");
 
     private Links(Name alias, Table<LinksRecord> aliased) {
         this(alias, aliased, null);
@@ -194,7 +197,8 @@ public class Links extends TableImpl<LinksRecord> {
     /**
      * Convenience mapping calling {@link SelectField#convertFrom(Function)}.
      */
-    public <U> SelectField<U> mapping(Function3<? super Long, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Function3<? super Long, ? super String,
+        ? super LocalDateTime, ? extends U> from) {
         return convertFrom(Records.mapping(from));
     }
 
@@ -202,7 +206,8 @@ public class Links extends TableImpl<LinksRecord> {
      * Convenience mapping calling {@link SelectField#convertFrom(Class,
      * Function)}.
      */
-    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Long, ? super String, ? super LocalDateTime, ? extends U> from) {
+    public <U> SelectField<U> mapping(Class<U> toType, Function3<? super Long,
+        ? super String, ? super LocalDateTime, ? extends U> from) {
         return convertFrom(toType, Records.mapping(from));
     }
 }

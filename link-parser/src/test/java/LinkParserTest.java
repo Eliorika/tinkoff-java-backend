@@ -4,10 +4,8 @@ import ru.tinkoff.edu.java.linkparser.linkStructures.Result;
 import ru.tinkoff.edu.java.linkparser.linkStructures.StackOverflowResult;
 import ru.tinkoff.edu.java.linkparser.parsers.LinkParser;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

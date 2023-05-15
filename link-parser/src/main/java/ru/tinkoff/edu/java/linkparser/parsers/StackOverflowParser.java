@@ -5,7 +5,6 @@ import ru.tinkoff.edu.java.linkparser.linkStructures.StackOverflowResult;
 import ru.tinkoff.edu.java.linkparser.parsers.LinkParser;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.Arrays;
 
 public final class StackOverflowParser implements LinkParser {

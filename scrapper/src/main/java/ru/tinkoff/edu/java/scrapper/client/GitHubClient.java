@@ -1,6 +1,5 @@
 package ru.tinkoff.edu.java.scrapper.client;
 
-import netscape.javascript.JSObject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;

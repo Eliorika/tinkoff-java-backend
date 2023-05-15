@@ -1,9 +1,6 @@
 package ru.tinkoff.edu.java.bot.client;
 
 
-import jakarta.annotation.PostConstruct;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
@@ -13,7 +10,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import ru.tinkoff.edu.java.bot.client.dto.request.AddLinkRequest;
 import ru.tinkoff.edu.java.bot.client.dto.request.RemoveLinkRequest;
 import ru.tinkoff.edu.java.bot.client.dto.response.ListLinksResponse;
-import ru.tinkoff.edu.java.bot.dto.request.LinkUpdateRequest;
 import ru.tinkoff.edu.java.bot.client.dto.response.LinkResponse;
 
 @Component

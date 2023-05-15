@@ -1,8 +1,6 @@
 package ru.tinkoff.edu.java.scrapper.service.jooq;
 
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.domain.dto.TrackLink;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqChatRepository;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqLinkRepository;

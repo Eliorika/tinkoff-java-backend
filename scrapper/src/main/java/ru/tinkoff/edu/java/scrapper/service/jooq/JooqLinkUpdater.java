@@ -1,8 +1,6 @@
 package ru.tinkoff.edu.java.scrapper.service.jooq;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Service;
 import ru.tinkoff.edu.java.scrapper.domain.dto.Link;
 import ru.tinkoff.edu.java.scrapper.domain.dto.TrackLink;
 import ru.tinkoff.edu.java.scrapper.domain.repository.jooq.JooqLinkRepository;
@@ -43,7 +41,7 @@ public class JooqLinkUpdater implements LinkUpdater {
             map.put(link, new ArrayList<>());
             var tracks = listLinksRepository.findAllByLinkId(link.getLink_id());
             for(TrackLink ln: tracks){
-                map.get(link).add(ln.getTg_chat().getTg_chat());
+                map.get(link).add(ln.getTg_chat().getTgChat());
             }
         }
         return map;

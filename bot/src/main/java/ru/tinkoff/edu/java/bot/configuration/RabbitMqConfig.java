@@ -1,7 +1,6 @@
 package ru.tinkoff.edu.java.bot.configuration;
 
 import org.springframework.amqp.core.*;
-import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -20,16 +19,11 @@ import java.util.Map;
 @Configuration
 public class RabbitMqConfig {
 
-//    @Bean
-//    public MessageConverter messageConverter(ClassMapper classMapper) {
-//        Jackson2JsonMessageConverter jsonConverter=new Jackson2JsonMessageConverter();
-//        jsonConverter.setClassMapper(classMapper);
-//        return jsonConverter;
-//    }
-
     @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
+    public MessageConverter messageConverter(ClassMapper classMapper) {
+        Jackson2JsonMessageConverter jsonConverter=new Jackson2JsonMessageConverter();
+        jsonConverter.setClassMapper(classMapper);
+        return jsonConverter;
     }
 
     @Bean
@@ -88,6 +82,16 @@ public class RabbitMqConfig {
     }
 
 
+    @Bean
+    public ClassMapper classMapper(){
+        Map<String, Class<?>> mappings = new HashMap<>();
+        mappings.put("ru.tinkoff.edu.java.scrapper.dto.request.LinkUpdateRequest", LinkUpdateRequest.class);
+
+        DefaultClassMapper classMapper = new DefaultClassMapper();
+        classMapper.setTrustedPackages("ru.tinkoff.edu.java.scrapper.dto.request.*");
+        classMapper.setIdClassMapping(mappings);
+        return classMapper;
+    }
 
 
 }

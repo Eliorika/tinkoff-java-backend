@@ -48,7 +48,7 @@ public class JdbcListLinkTestIT extends IntegrationEnvironment {
         assertThat(list, is(notNullValue()));
         assertThat(list, is(not(emptyIterable())));
         assertThat(list.size(), equalTo(1));
-        assertThat(list.get(0).getTg_chat().getTg_chat(), equalTo(chatID));
+        assertThat(list.get(0).getTg_chat().getTgChat(), equalTo(chatID));
         assertThat(list.get(0).getLink().getLink().toString(), equalTo(linkUrl));
     }
 
@@ -56,7 +56,7 @@ public class JdbcListLinkTestIT extends IntegrationEnvironment {
     @Transactional
     @Rollback
     public void removeTrackLinkTest(){
-        Long chatID = (long)123;
+        long chatID = (long)123;
         chatRepository.add(chatID);
 
         String linkUrl1 = "github.com";
@@ -75,7 +75,7 @@ public class JdbcListLinkTestIT extends IntegrationEnvironment {
         assertThat(list, is(notNullValue()));
         assertThat(list, is(not(emptyIterable())));
         assertThat(list.size(), equalTo(1));
-        assertThat(list.get(0).getTg_chat().getTg_chat(), equalTo(chatID));
+        assertThat(list.get(0).getTg_chat().getTgChat(), equalTo(chatID));
         assertThat(list.get(0).getLink().getLink().toString(), equalTo(linkUrl2));
     }
 
@@ -102,10 +102,10 @@ public class JdbcListLinkTestIT extends IntegrationEnvironment {
         assertThat(list, is(not(emptyIterable())));
         assertThat(list.size(), equalTo(2));
 
-        assertThat(list.get(0).getTg_chat().getTg_chat(), equalTo(chatID));
+        assertThat(list.get(0).getTg_chat().getTgChat(), equalTo(chatID));
         assertThat(list.get(0).getLink().getLink().toString(), equalTo(linkUrl1));
 
-        assertThat(list.get(1).getTg_chat().getTg_chat(), equalTo(chatID));
+        assertThat(list.get(1).getTg_chat().getTgChat(), equalTo(chatID));
         assertThat(list.get(1).getLink().getLink().toString(), equalTo(linkUrl2));
     }
 }

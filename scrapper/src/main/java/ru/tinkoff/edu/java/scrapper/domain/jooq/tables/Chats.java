@@ -63,7 +63,8 @@ public class Chats extends TableImpl<ChatsRecord> {
     /**
      * The column <code>CHATS.TG_CHAT</code>.
      */
-    public final TableField<ChatsRecord, Long> TG_CHAT = createField(DSL.name("TG_CHAT"), SQLDataType.BIGINT.nullable(false), this, "");
+    public final TableField<ChatsRecord, Long> TG_CHAT = createField(DSL.name("TG_CHAT"),
+        SQLDataType.BIGINT.nullable(false), this, "");
 
     private Chats(Name alias, Table<ChatsRecord> aliased) {
         this(alias, aliased, null);

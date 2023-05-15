@@ -16,8 +16,4 @@ public interface JpaLinkRepository extends JpaRepository<LinkEntity, Long> {
     @Query(value = "select * from links where links.last_checked < now() - interval '1 minutes'", nativeQuery = true)
     List<LinkEntity> findOld();
 
-//    @Modifying
-//    @Query(value = "update links set last_checked = now() where link = ?", nativeQuery = true)
-//    void updateLink(String url);
-
 }

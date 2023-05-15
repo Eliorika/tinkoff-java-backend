@@ -20,7 +20,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.jdbc.support.JdbcTransactionManager;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -39,20 +38,18 @@ import java.sql.SQLException;
 @Testcontainers
 public abstract class IntegrationEnvironment {
     protected static final JdbcDatabaseContainer<?> CONTAINER;
-    private static String DB_NAME = "scrapper";
-    private static String USER_NAME = "admin";
-    private static String PASSWORD = "0000";
 
     static {
         DockerImageName imgName = DockerImageName.parse("postgres:latest");
+        String PASSWORD = "0000";
+        String USER_NAME = "admin";
+        String DB_NAME = "scrapper";
         CONTAINER = new PostgreSQLContainer<>(imgName)
                 .withDatabaseName(DB_NAME)
                 .withUsername(USER_NAME)
                 .withPassword(PASSWORD)
                 .withExposedPorts(PostgreSQLContainer.POSTGRESQL_PORT);
 
-//        CONTAINER.setWaitStrategy(Wait.defaultWaitStrategy()
-//                .withStartupTimeout(Duration.of(60, SECONDS)));
         CONTAINER.start();
 
         runMigrations(CONTAINER);

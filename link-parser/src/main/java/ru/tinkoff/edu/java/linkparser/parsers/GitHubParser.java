@@ -4,7 +4,6 @@ import ru.tinkoff.edu.java.linkparser.linkStructures.GitHubResult;
 import ru.tinkoff.edu.java.linkparser.linkStructures.Result;
 
 import java.net.URI;
-import java.net.URL;
 
 public final class GitHubParser implements LinkParser {
     @Override
