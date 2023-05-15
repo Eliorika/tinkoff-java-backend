@@ -5,7 +5,7 @@ app:
   database-access-type: jpa
   queue: qScrapper
   exchange: exScrapper
-  useQueue: false
+  useQueue: true
 
 
 springdoc:
@@ -20,7 +20,7 @@ server:
 
 spring:
   application:
-    name: test
+    name: scrapperApp
   jpa:
     hibernate:
       ddl-auto: update
@@ -37,5 +37,31 @@ spring:
 github:
   token: ${GITHUB_TOKEN}
 
+management:
+    metrics:
+        tags:
+            application: ${spring.application.name}
+    server:
+        port: 8182
+    endpoints:
+        web:
+            base-path: /
+            path-mapping:
+                prometheus: metrics
+            exposure:
+                include: "*"
+        enabled-by-default: false
 
-
+    endpoint:
+        info:
+            enabled: true
+        health:
+            enabled: true
+        metrics:
+            enabled: true
+        prometheus:
+            enabled: true
+    prometheus:
+        metrics:
+            export:
+                enabled: true
